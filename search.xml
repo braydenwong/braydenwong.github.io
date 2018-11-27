@@ -1,8 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[test]]></title>
-    <url>%2F2018%2F11%2F25%2Ftest%2F</url>
-    <content type="text"><![CDATA[asdasd]]></content>
+    <title><![CDATA[拦截手机app发起的请求，获取请求信息！调试爬虫必备!]]></title>
+    <url>%2F2018%2F11%2F26%2F%E6%8B%A6%E6%88%AA%E6%89%8B%E6%9C%BAapp%E5%8F%91%E8%B5%B7%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%EF%BC%81%E8%B0%83%E8%AF%95%E7%88%AC%E8%99%AB%E5%BF%85%E5%A4%87%2F</url>
+    <content type="text"><![CDATA[在windows系统下：最近在做Android接口调试，用postman发请求时总是报500空指针异常，获取不到请求的数据，我就在想是不是请求body没过去，后台接受不到，手机app是正常使用的。所以我就想到拦截手机的请求，看看请求头是什么，是不是有特殊要求。然后就百度，知道有Fiddler这种东西，也就去试试了。最终成功解决问题！！！附上Fiddler使用教程，非常感谢这篇文章：https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html 在mac下：建议使用Charles 值得一提的是，]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>手机抓包</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java中main方法执行的问题]]></title>
+    <url>%2F2018%2F11%2F26%2Fjava%E4%B8%ADmain%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[在eclipse中，main方法一定要写在与源文件名相同的类里才可以，无论这个类是不是public，只要类名与文件名相同即可！否则右键run as没有java application这个选项（Eclipse内部设置）！ 但是，在cmd下，这种情况是可以运行的：文件名为DanLiModel.java12345678910111213141516171819 public class DanLiModel &#123; private static DanLiModel danLi; private DanLiModel() &#123;&#125;; public static DanLiModel getDanLi() &#123; if (danLi==null) &#123; danLi=new DanLiModel(); &#125; return danLi; &#125;&#125; class Test&#123; public static void main(String[] args) &#123; DanLiModel d1=DanLiModel.getDanLi(); DanLiModel d2=DanLiModel.getDanLi(); System.out.println(d1==d2); &#125;&#125; 在cmd中编译DanLiModel.java，然后运行Test.class，返回true。 在eclipse中右键run as没有java application的选项。 分两大类，四种情况。。。。 以上情况：说明：1.main方法不一定要在public修饰的类中才能运行。2.main方法不一定要在与源文件同名的public修饰的类才能运行。3.eclipse内部的设置是main方法只能在与源文件同名的public修饰的类中才可以运行。4.无论是在eclipse还是在cmd，类名可以和源文件名不同，能通过编译，但是不能运行，因为编译后的类名变了，在eclipse中还是会去选择运行原来的类名（文件名）{Eclipse内部设置}，在cmd中编译出来的.class文件与源文件名字不同，只可以运行编译后那个类名。如果类名是用public修饰的，那么无论在eclipse还是在cmd都不能编译，这种情况下源文件名必须与类名相同。]]></content>
+      <categories>
+        <category>java</category>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[oxygen版本jsp文件BUG问题]]></title>
+    <url>%2F2018%2F11%2F26%2Foxygen%E7%89%88%E6%9C%ACjsp%E6%96%87%E4%BB%B6BUG%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[1&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt; 引入c标签库并且也已经成功导入相应jar包后还是c标签报错，这时，可以看看自己的eclipse版本是否是oxygen。这是eclipse oxygen的一个bug，官方已经给出解决方法：https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0 点进去将下载的文件解压缩，找到plugins下面的jar包，然后找到本机eclipse安装目录，进入plugins ，org.eclipse.wst.html.core（后面可能有日期） 复制该jar包的文件名，将新的jar包名字改为此名字，并且替换掉原来jar，再次打开eclipse ，如果仍然报错，clean一下 。 一定要按上面步骤替换，不然可能替换后会导致eclipse异常!]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[解决mybatis中字段重名的问题尝试和总结]]></title>
+    <url>%2F2018%2F11%2F26%2F%E8%A7%A3%E5%86%B3mybatis%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%9D%E8%AF%95%E5%92%8C%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id AND o.id = #&#123;id&#125; 映射的column也要对应查询时的别名：123&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt; 2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java中经常用到的自动装箱和自动拆箱]]></title>
+    <url>%2F2018%2F11%2F26%2Fjava%E4%B8%AD%E7%BB%8F%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%2F</url>
+    <content type="text"><![CDATA[首先，装箱和拆箱是jdk1.5之后的概念。java语言规范中说道：在许多情况下包装与解包装是由编译器自行完成的（在这种情况下包装成为装箱，解包装称为拆箱）；1234//声明一个Integer对象Integer num = 10;//以上的声明就是用到了自动的装箱：解析为Integer num = new Integer(10); 以上10是基本数据类型，Integer是封装类型。1234//装箱Integer num = 10;//拆箱int num1 = num; 以上是装箱和拆箱的例子。123Integer num = 10;//进行计算时隐含的有自动拆箱System.out.print(num--); 以上两行说明了在计算时自动进行了拆箱，因为对象是不能直接进行运算的，必须要转成基本数据类型，但是我们平常是直接就使用了，其实编译器是帮我们做了装箱和拆箱的事情。这种机制其实也是一种设计模式：亨元模式。 自动装箱拆箱不仅在基本数据类型中有应用，在String类中也有应用，比如我们经常声明一个String对象时：123String str = “sl”; //代替下面的声明方式 String str = new String(“sl”); 自动装箱和自动拆箱我们在实际开发中都不自觉地用了，但是有多少人知道其中的原理呢？]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java基础</tag>
+      </tags>
   </entry>
 </search>
