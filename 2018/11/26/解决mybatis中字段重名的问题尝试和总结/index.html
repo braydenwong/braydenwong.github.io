@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id A">
+<meta name="description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：">
 <meta name="keywords" content="mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决mybatis中字段重名的问题尝试和总结">
 <meta property="og:url" content="http://www.braydenwong.com/2018/11/26/解决mybatis中字段重名的问题尝试和总结/index.html">
 <meta property="og:site_name" content="Brayden Wong">
-<meta property="og:description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id A">
+<meta property="og:description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-26T07:22:11.966Z">
+<meta property="og:updated_time" content="2018-11-28T12:18:48.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="解决mybatis中字段重名的问题尝试和总结">
-<meta name="twitter:description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id A">
+<meta name="twitter:description" content="1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：">
 
 
 
@@ -413,7 +413,7 @@
       
 
       
-        <p>1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。<br>查询时给列取别名（多表查询）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT u.*,o.id as oid,CODE,total,user_id </span><br><span class="line">FROM tb_order o,tb_user u </span><br><span class="line">WHERE o.user_id = u.id </span><br><span class="line">AND o.id = #&#123;id&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。<br>查询时给列取别名（多表查询）： <a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT u.*,o.id as oid,CODE,total,user_id </span><br><span class="line">FROM tb_order o,tb_user u </span><br><span class="line">WHERE o.user_id = u.id </span><br><span class="line">AND o.id = #&#123;id&#125;</span><br></pre></td></tr></table></figure></p>
 <p>映射的column也要对应查询时的别名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;</span><br><span class="line">&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;</span><br><span class="line">&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
 <p>2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。<br>3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。<br>以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。</p>
 
@@ -606,7 +606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[json直接通过key取value]]></title>
+    <url>%2F2018%2F11%2F28%2Fjson%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87key%E5%8F%96value%2F</url>
+    <content type="text"><![CDATA[在爬虫的时候爬取到的数据经常是复杂的json格式，这时如果用java的fastjson取解析会变得非常繁琐，这时就想有没办法可以遍历整个json，直接通过target所在的key直接取到value，答案是有的。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263public static String getValueByKeyFromJson(String json, String oriKey) &#123; if (json == null || json == &quot;&quot;) &#123; return null; &#125; boolean isJsonString = isJSONValid(json); if (!isJsonString) &#123; return null; &#125; String key = oriKey.trim(); Object object = JSON.parse(json); Class&lt;? extends Object&gt; cls = object.getClass(); if (cls == JSONObject.class) &#123; JSONObject jo = (JSONObject) object; if (jo.containsKey(key)) &#123; return jo.getString(key); &#125; for (Object o : jo.values()) &#123; boolean isJson = isJSONValid(o.toString()); if (isJson) &#123; String tmp = getValueByKeyFromJson(o.toString(), key); if (tmp == null) &#123; continue; &#125; else &#123; return tmp; &#125; &#125; else &#123; continue; &#125; &#125; &#125; else if (cls == JSONArray.class) &#123; JSONArray ja = (JSONArray) object; int size = ja.size(); for (int i = 0; i &lt; size; i++) &#123; Object o = ja.get(i); if (o != null &amp;&amp; o != &quot;&quot;) &#123; String tmp = getValueByKeyFromJson(o.toString(), key); if (tmp == null) &#123; continue; &#125; else &#123; return tmp; &#125; &#125; &#125; &#125; return null; &#125; public static boolean isJSONValid(String text) &#123; if (text == null || &quot;&quot;.equals(text)) &#123; return false; &#125; try &#123; JSONObject.parseObject(text); &#125; catch (Exception ex) &#123; try &#123; JSONObject.parseArray(text); &#125; catch (Exception ex1) &#123; return false; &#125; &#125; return true; &#125; 这是封装的一个方法，思想就是遍历这个json对象，遍历每一个key，当target的key与所传的key碰撞时便返回该value，这里用到了递归的方法，不断地去递归整个json。该方法目前有两个缺陷:1.当有多个相同的key时，只会返回第一个2.当解析的json非常复杂时，解析会变得比较慢，因为它还是需要遍历每一个key，不断的去递归。有没什么优化性能的好方法？其中的算法还是可以再仔细斟酌的。所以，可以适度使用该方法，比如先取直接父级的key，让它减少递归次数等等。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[使用native2ascii工具处理国际化资源文件问题]]></title>
+    <url>%2F2018%2F11%2F28%2F%E4%BD%BF%E7%94%A8native2ascii%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E5%9B%BD%E9%99%85%E5%8C%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[在WEB-INF/classes目录下，按住shift键右键打开命令行，然后输入以下命令，按自己情况命名。native2ascii是JDK自带的转码工具，所以装了JDK后就可以直接运行！1native2ascii -encoding UTF-8 mess.properties mess_zh.propertis]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[查询mysql数据库中是否存在某个字段]]></title>
+    <url>%2F2018%2F11%2F28%2F%E6%9F%A5%E8%AF%A2mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%2F</url>
+    <content type="text"><![CDATA[通过这个查到所有的表，再通过这个结果来查询对应表的对应字段值select table_name from information_schema.columns where table_schema = ‘库名’ and column_name=’字段名’; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效果如下：]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[解决eclipse使用lombok插件问题,最正确的解决方式！]]></title>
+    <url>%2F2018%2F11%2F28%2F%E8%A7%A3%E5%86%B3eclipse%E4%BD%BF%E7%94%A8lombok%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98-%E6%9C%80%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%81%2F</url>
+    <content type="text"><![CDATA[最新公司项目需要用到微信开发sdk，sdk用到lombok，项目却一直报错，提示没有getter和setter方法。百度有很多解决方式，但各不一样，都不能奏效，最终解决方法在这：12-javaagent:lombok.jar具体目录-Xbootclasspath/a:lombok.jar具体目录 当然，你用idea的话这些都不是问题]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[拦截手机app发起的请求，获取请求信息！调试爬虫必备!]]></title>
     <url>%2F2018%2F11%2F26%2F%E6%8B%A6%E6%88%AA%E6%89%8B%E6%9C%BAapp%E5%8F%91%E8%B5%B7%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%EF%BC%81%E8%B0%83%E8%AF%95%E7%88%AC%E8%99%AB%E5%BF%85%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[在windows系统下：最近在做Android接口调试，用postman发请求时总是报500空指针异常，获取不到请求的数据，我就在想是不是请求body没过去，后台接受不到，手机app是正常使用的。所以我就想到拦截手机的请求，看看请求头是什么，是不是有特殊要求。然后就百度，知道有Fiddler这种东西，也就去试试了。最终成功解决问题！！！附上Fiddler使用教程，非常感谢这篇文章：https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html 在mac下：建议使用Charles 值得一提的是，]]></content>
+    <content type="text"><![CDATA[在windows系统下：最近在做Android接口调试，用postman发请求时总是报500空指针异常，获取不到请求的数据，我就在想是不是请求body没过去，后台接受不到，手机app是正常使用的。所以我就想到拦截手机的请求，看看请求头是什么，是不是有特殊要求。然后就百度，知道有Fiddler这种东西，也就去试试了。最终成功解决问题！！！附上Fiddler使用教程，非常感谢这篇文章：https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html在mac下：建议使用Charles 值得一提的是，]]></content>
       <categories>
         <category>开发工具</category>
       </categories>
@@ -37,7 +63,7 @@
   <entry>
     <title><![CDATA[解决mybatis中字段重名的问题尝试和总结]]></title>
     <url>%2F2018%2F11%2F26%2F%E8%A7%A3%E5%86%B3mybatis%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%9D%E8%AF%95%E5%92%8C%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）：1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id AND o.id = #&#123;id&#125; 映射的column也要对应查询时的别名：123&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt; 2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。]]></content>
+    <content type="text"><![CDATA[1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）： 1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id AND o.id = #&#123;id&#125; 映射的column也要对应查询时的别名：123&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt; 2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。]]></content>
       <categories>
         <category>web</category>
       </categories>
