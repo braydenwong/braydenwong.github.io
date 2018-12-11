@@ -294,6 +294,688 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/29/mui/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/mui/" itemprop="url">在html中动态加载numberbox</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T22:43:41+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/29/mui/" class="leancloud_visitors" data-flag-title="在html中动态加载numberbox">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这样是正常的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;mui-numbox&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-minus&quot; type=&quot;button&quot;&gt;-&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;input class=&quot;mui-input-numbox&quot; type=&quot;number&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-plus&quot; type=&quot;button&quot;&gt;+&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是如果在js中动态加载这段代码就会有问题了，例如我先定义一个div：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;mui-content-padded&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后在js中进行加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">window.onload = function() &#123;</span><br><span class="line"></span><br><span class="line">var default1 = document.getElementById(&apos;default&apos;);</span><br><span class="line"></span><br><span class="line">var html1 = &quot;&lt;div class=\&quot;mui-numbox\&quot;&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-minus\&quot; type=\&quot;button\&quot;&gt;-&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;input class=\&quot;mui-input-numbox\&quot; type=\&quot;number\&quot; /&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-plus\&quot; type=\&quot;button\&quot;&gt;+&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;/div&gt;&quot;;</span><br><span class="line"></span><br><span class="line">console.log(html1);</span><br><span class="line"></span><br><span class="line">default1.innerHTML = html1;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>此时，加载出来的画面是正常的，但是点击+或者-，不会有递增或者递减的效果。曾尝试过window.onload换成mui.plusReady()函数，但问题依然存在。<br><br><strong>解决方案</strong>:<br><br>在innerHTML后加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">default1.innerHTML = html1;</span><br><span class="line">mui(&apos;.mui-numbox&apos;).numbox();</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+  
+</div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/29/oauth2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/oauth2/" itemprop="url">oauth2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T22:43:22+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/29/oauth2/" class="leancloud_visitors" data-flag-title="oauth2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+  
+</div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/29/解决js中a标签嵌套的问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/解决js中a标签嵌套的问题/" itemprop="url">解决js中a标签嵌套的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T22:31:43+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/29/解决js中a标签嵌套的问题/" class="leancloud_visitors" data-flag-title="解决js中a标签嵌套的问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>公司的项目前端是用jsp写的，引入自定义的js来动态加载dom，在做一个需求时，我需要用到a标签嵌套(虽然可以不这么做，但我当时只想到这种办法，于是硬着头皮写了，结果一堆坑).<br>其实在html中，a标签是不允许嵌套的，会导致浏览器解析成两个a标签。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- a标签进行嵌套的时候 --&gt;</span><br><span class="line">&lt;a href=&quot;#outer&quot;&gt;outerA</span><br><span class="line">     &lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- 而浏览器则会解析成 -- &gt;</span><br><span class="line">&lt;a href=&quot;#outer&quot;&gt;outerA&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>网上搜了解决办法说用object标签包裹，后来发现这是在给自己继续挖坑，根本不符合要求好吗！<br>真正的解决办法是将外层a标签改为行内块级元素即display:inline-block;设置height/width并设置为绝对定位将其放在里层a标签的位置，通过调整里层a标签及外层a的z-index大小，可以让鼠标点击到a标签。虽然正确的开发方式中很少这样做，但这个经历也是为自己奇怪的逻辑长了记性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+  
+</div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/29/思考如何快速学习一门新的编程语言？/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/29/思考如何快速学习一门新的编程语言？/" itemprop="url">思考如何快速学习一门新的编程语言？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-29T21:08:38+08:00">
+                2018-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/29/思考如何快速学习一门新的编程语言？/" class="leancloud_visitors" data-flag-title="思考如何快速学习一门新的编程语言？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&emsp;&emsp;我一直认为编程是不局限于任何一种语言的。在你有任何想法的时候，都可以编写软件，然后愿望就实现了。目前的软件开发有很多内容可以直接复用，你可以找到所有已经编译好的组件，而且是免费的，拿来就可以用。建立好一段代码后，就可以重复使用无数次，听起来好像很牛逼的样子。但有时候不是这样的。编程带给人的惊喜只是暂时的。在建立了很多代码以后，在写代码的过程中你会不断遇到让人迷惑的错误。因为一旦你习惯了特定语言和框架的模式后，当你需要第二种天性去掌握所选语言中非自然的语法时，编程的好像就变成了一件很尴尬的事情。<br>&emsp;&emsp;更别提我们有无数种不同的编程语言。每当开发人员面对特殊语言的语法而深感沮丧时，很幸运的是“自然选择”已经淘汰了很多很差的语言（有时也有意外，比如我至今还没搞懂PHP存在的意义）。一旦一门新的语言开始在一群开发者中流行起来，那么往往会出现了一个新的开发者社区，程序员们互相合作，努力让这门特殊的语言发展壮大。<br>&emsp;&emsp;每一种新语言的诞生所带来的创新，都能造福我们每一个人。但是有时也有不利的一面。有些人可能写了一些非常有用的开源JavaScript库，但是从事Python的开发者却完全没法用。他们不得不自己写一个Python版本的函数库，或者用JavaScript重写所有代码。再想想当前有多少种语言和框架。只要你在软件开发这一行呆了一定的时间，早就已经习以为常了，所以我常常和同事说，java有的东西，python肯定也有，python有的，java肯定也有，因为两者的生态圈实在太大了，总会有些技术大神会想着去造一个属于自己熟悉的语言的轮子，顶多是借鉴了一下其他语言的思想。<br>&emsp;&emsp;回归正题，如何快速的去学习一门新的语言的呢？这对于程序员来说非常重要，我们不应该局限于任何一门语言做开发，因为程序员是解决问题的，是不局限于任何一种方法，任何一种语言地去解决问题！</p>
+<p>首先，我们先思考语言都包含些什么？各种编程语言都在以下三个方面上存在不同：语法、语义和标准库。<br>1.语法<br>如果不遵循语法，那么你会在编辑器中看到各种弯弯曲曲的红线，而且你的代码也无法通过编译器或解释器。<br>JavaScript使用大括号，布尔型使用小写的true和false，用//表示行注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function doSomething() &#123;  </span><br><span class="line">  a = true;  </span><br><span class="line">  if (a) &#123;  </span><br><span class="line">    ... // Do something.  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Python用缩进，布尔型用首字母大写的True和False表示，用#表示行注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def doSomething():  </span><br><span class="line">  a = True  </span><br><span class="line">  if a:  </span><br><span class="line">    ... # Do something.</span><br></pre></td></tr></table></figure></p>
+<p>还有一门很奇葩的语言叫Haskell，是一个美国逻辑学家Haskell Brooks Curry发明的，它的语法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">doSomething :: IO ()  </span><br><span class="line">doSomething = do  </span><br><span class="line">  let a = True  </span><br><span class="line">  if a  </span><br><span class="line">    then ... -- Do something.  </span><br><span class="line">    else return ()</span><br></pre></td></tr></table></figure></p>
+<p>2.语义<br><br>所有编程语言都有大多数相同的特征：变量赋值、数字相加、字符串操作、调用函数、等等。<br>然而，每种语言都有特殊的思想，以特定的方式运行。我觉得这很难用文字去解释，所以我在google找到了这样的资料：</p>
+<p>在“声明类”，“调用函数”，或“定义参数的类型”时，你定义了程序的语义。有些语言遵循这样一套规则，而其他的遵循别的规则。比如：C++中声明的类可以延伸到多个类。当你使用“+”将数字和字符串加到一起的时候，根据语言的语义会得出不同的结果。一些编程语言会因为类型不匹配而导致编译失败，但是有些编程语言会自动将数字转换成十进制的字符串。<br>emmmm。。。我觉得这是我看的资料里解释的最好的了，嗯，maybe。<br>语法与语义的关系就相当于用单词（语法）来表达想法（语义）。你可以通过语言的语法来表达语义。<br></p>
+<p>3.标准库 <br><br>每种语言都有各自的软件包，我们称之为“标准库”，有的再继续封装，叫sdk，开发包啥的，但本质的含义都一样。Python用print()在控制台输出信息，JavaScript用console.log()，Java就是System.out.print()，所以有没觉得都是这么一个套路，只是各自的玩法不一样。每个标准库基本上都不同于其他库：一些库只提供最低限度的方法，而有些库则提供非常广泛的函数，所以开发人员基本上经常要在这个基础上再封装一层自己的兵器库。<br>其实我有想过，软件开发都已经发展到这个年代了，怎么没有一个大牛开发出一种工具可以将代码从一种语言转换成另一种语言，这完全可行啊。我猜肯定有人试过，但是放弃了。因为如果不将整个标准库转换过去的话是没有实用性的。<br>当你整来整去，写两个demo跑个hello world熟悉了这些之后，你可以考虑把标准库写成API了，API是对外的，你可以用其他语言重写模块内部的代码，但API不会发生改变。调用print(“Hello”)与Java调用System.out.println(“Hello”)不同，但是其实它们可以是同一个API。<br>当你都熟悉了该语言的基本操作后，这是你再试试弄成模块化。这就已经达到业务的层面了，恭喜，你已经可以把这门语言做为你的生产工具了！</p>
+<p>参考：<a href="https://medium.com/@fwouts/the-zenc-master-plan-c693bf3b265e" target="_blank" rel="noopener">https://medium.com/@fwouts/the-zenc-master-plan-c693bf3b265e</a><br><a href="https://blog.csdn.net/weiyuefei/article/details/80395316" target="_blank" rel="noopener">https://blog.csdn.net/weiyuefei/article/details/80395316</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+  
+</div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/28/json直接通过key取value/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1309,561 +1991,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/26/oxygen版本jsp文件BUG问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brayden Wong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/IMG_0729.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brayden Wong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/oxygen版本jsp文件BUG问题/" itemprop="url">oxygen版本jsp文件BUG问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T15:24:11+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/开发工具/" itemprop="url" rel="index">
-                    <span itemprop="name">开发工具</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/26/oxygen版本jsp文件BUG问题/" class="leancloud_visitors" data-flag-title="oxygen版本jsp文件BUG问题">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;</span><br></pre></td></tr></table></figure>
-<p>引入c标签库并且也已经成功导入相应jar包后还是c标签报错，这时，可以看看自己的eclipse版本是否是oxygen。<strong>这是eclipse oxygen的一个bug</strong>，官方已经给出解决方法：<br><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0" target="_blank" rel="noopener">https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0</a></p>
-<p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/oxygen版本jsp文件BUG问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-    <div>
-  
-</div>
-
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-       
-     <div>    
-      
-  </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/26/解决mybatis中字段重名的问题尝试和总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brayden Wong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/IMG_0729.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brayden Wong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/解决mybatis中字段重名的问题尝试和总结/" itemprop="url">解决mybatis中字段重名的问题尝试和总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T15:19:45+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/web/" itemprop="url" rel="index">
-                    <span itemprop="name">web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/26/解决mybatis中字段重名的问题尝试和总结/" class="leancloud_visitors" data-flag-title="解决mybatis中字段重名的问题尝试和总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。<br>查询时给列取别名（多表查询）：
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/解决mybatis中字段重名的问题尝试和总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-    <div>
-  
-</div>
-
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-       
-     <div>    
-      
-  </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2018/11/26/java中经常用到的自动装箱和自动拆箱/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Brayden Wong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/upload/IMG_0729.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Brayden Wong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/java中经常用到的自动装箱和自动拆箱/" itemprop="url">java中经常用到的自动装箱和自动拆箱</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-26T14:16:44+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/11/26/java中经常用到的自动装箱和自动拆箱/" class="leancloud_visitors" data-flag-title="java中经常用到的自动装箱和自动拆箱">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>首先，装箱和拆箱是jdk1.5之后的概念。java语言规范中说道：在许多情况下包装与解包装是由编译器自行完成的（在这种情况下包装成为装箱，解包装称为拆箱）；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//声明一个Integer对象</span><br><span class="line">Integer num = 10;</span><br><span class="line">//以上的声明就是用到了自动的装箱：解析为</span><br><span class="line">Integer num = new Integer(10);</span><br></pre></td></tr></table></figure></p>
-<p>以上10是基本数据类型，Integer是封装类型。
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/26/java中经常用到的自动装箱和自动拆箱/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-    <div>
-  
-</div>
-
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-       
-     <div>    
-      
-  </div>
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1909,7 +2043,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1920,7 +2054,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1931,7 +2065,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
