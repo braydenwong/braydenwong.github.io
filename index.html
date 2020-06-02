@@ -361,6 +361,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/29/在html中动态加载numberbox/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/29/在html中动态加载numberbox/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -417,7 +427,7 @@
         
           
             <p>一开始我的写法是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;mui-numbox&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-minus&quot; type=&quot;button&quot;&gt;-&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;input class=&quot;mui-input-numbox&quot; type=&quot;number&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-plus&quot; type=&quot;button&quot;&gt;+&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>但是如果在js中动态加载这段代码就会有问题了，例如我先定义一个divs：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;mui-content-padded&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>但是如果在js中动态加载这段代码就会有问题了，例如我先定义一个div：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;mui-content-padded&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后在js中进行加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">window.onload = function() &#123;</span><br><span class="line"></span><br><span class="line">var default1 = document.getElementById(&apos;default&apos;);</span><br><span class="line"></span><br><span class="line">var html1 = &quot;&lt;div class=\&quot;mui-numbox\&quot;&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-minus\&quot; type=\&quot;button\&quot;&gt;-&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;input class=\&quot;mui-input-numbox\&quot; type=\&quot;number\&quot; /&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-plus\&quot; type=\&quot;button\&quot;&gt;+&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;/div&gt;&quot;;</span><br><span class="line"></span><br><span class="line">console.log(html1);</span><br><span class="line"></span><br><span class="line">default1.innerHTML = html1;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>此时，加载出来的页面是正常的，但是增加或减少时，不会有递增或者递减的效果。尝试过js的window.onload换成mui.plusReady()函数，但问题依然存在。<br><br><strong>解决方案</strong>:<br><br>在innerHTML后加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">default1.innerHTML = html1;</span><br><span class="line">mui(&apos;.mui-numbox&apos;).numbox();</span><br></pre></td></tr></table></figure></p>
 
@@ -520,6 +530,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/29/oauth2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/29/oauth2/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -700,6 +720,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/29/解决js中a标签嵌套的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/29/解决js中a标签嵌套的问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -857,6 +887,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/29/思考如何快速学习一门新的编程语言？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/29/思考如何快速学习一门新的编程语言？/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1022,6 +1062,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/28/json直接通过key取value/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/json直接通过key取value/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1180,6 +1230,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/28/使用native2ascii工具处理国际化资源文件问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/使用native2ascii工具处理国际化资源文件问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1336,6 +1396,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/28/查询mysql数据库中是否存在某个字段/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/查询mysql数据库中是否存在某个字段/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1517,6 +1587,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/28/解决eclipse使用lombok插件问题-最正确的解决方式！/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/28/解决eclipse使用lombok插件问题-最正确的解决方式！/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1696,6 +1776,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/26/拦截手机app发起的请求，获取请求信息！调试爬虫必备/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/拦截手机app发起的请求，获取请求信息！调试爬虫必备/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1887,6 +1977,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/26/java中main方法执行的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/java中main方法执行的问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -2330,6 +2430,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '6Cnlw5KIJOGSd2p78wRz1t8M-gzGzoHsz',
+        appKey: 'I6D3eJzdf0NWgsp1U3PmBHtX',
+        placeholder: '快来撩我吧～',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
