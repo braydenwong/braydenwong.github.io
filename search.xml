@@ -1,114 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[在html中动态加载numberbox]]></title>
-    <url>%2F2018%2F11%2F29%2F%E5%9C%A8html%E4%B8%AD%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDnumberbox%2F</url>
-    <content type="text"><![CDATA[一开始我的写法是这样：123456789&lt;div class=&quot;mui-numbox&quot; id=&quot;default&quot;&gt;&lt;button class=&quot;mui-btn mui-btn-numbox-minus&quot; type=&quot;button&quot;&gt;-&lt;/button&gt;&lt;input class=&quot;mui-input-numbox&quot; type=&quot;number&quot; /&gt;&lt;button class=&quot;mui-btn mui-btn-numbox-plus&quot; type=&quot;button&quot;&gt;+&lt;/button&gt;&lt;/div&gt; 但是如果在js中动态加载这段代码就会有问题了，例如我先定义一个div：1234&lt;div class=&quot;mui-content-padded&quot; id=&quot;default&quot;&gt;&lt;/div&gt; 然后在js中进行加载：1234567891011121314151617181920window.onload = function() &#123;var default1 = document.getElementById(&apos;default&apos;);var html1 = &quot;&lt;div class=\&quot;mui-numbox\&quot;&gt;&quot; +&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-minus\&quot; type=\&quot;button\&quot;&gt;-&lt;/button&gt;&quot; +&quot;&lt;input class=\&quot;mui-input-numbox\&quot; type=\&quot;number\&quot; /&gt;&quot; +&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-plus\&quot; type=\&quot;button\&quot;&gt;+&lt;/button&gt;&quot; +&quot;&lt;/div&gt;&quot;;console.log(html1);default1.innerHTML = html1;&#125;; 此时，加载出来的页面是正常的，但是增加或减少时，不会有递增或者递减的效果。尝试过js的window.onload换成mui.plusReady()函数，但问题依然存在。解决方案:在innerHTML后加上12default1.innerHTML = html1;mui(&apos;.mui-numbox&apos;).numbox();]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>oauth2</title>
+      <link href="/2020/06/01/oauth2/"/>
+      <url>/2020/06/01/oauth2/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;&emsp;公司的物业管理app项目用到了oauth作为安卓端和服务器端的安全认证协议，一开始拿到这套代码是一脸懵逼的，因为当时完全没有接触过oauth相关的开发，那么只有一条路——自学。通过查找资料看文档，慢慢地对oauth2熟悉了，这段时间虽然很痛苦但是成长是非常快的。<br>&emsp;&emsp;当时公司是用这个项目——<a href="https://github.com/monkeyk/oauth2-shiro" target="_blank" rel="noopener">oauth2-shiro</a>做的oauth2二次开发，用到了shiro相关知识，好吧，又是一个盲区，于是shiro也学会了~这份源码我是一步一步地打断点看流程，最后才弄懂整个流程，不得不佩服作者的设计，真的是太巧妙了，后来还好奇去查了这位称号为monkeyk的作者，原来是四川某知名互联网的技术总监，真不愧是技术大牛！<br>&emsp;&emsp;对于oauth2的相关基本概念，建议直接看这篇来自阮一峰的文章——<a href="http://www.ruanyifeng.com/blog/2014/05/oauth_2_0.html" target="_blank" rel="noopener">理解OAuth 2.0</a>。<br>&emsp;&emsp;oauth2的应用场景十分广泛，比如在一些第三方的app或网站会提供微信登录的方式让用户扫码登录，只要你稍微留意一下跳转的url，你会看到url都会带有oauth2的字符串。<br>&emsp;&emsp;公司的项目</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>在html中动态加载numberbox</title>
+      <link href="/2019/11/29/%E5%9C%A8html%E4%B8%AD%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDnumberbox/"/>
+      <url>/2019/11/29/%E5%9C%A8html%E4%B8%AD%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDnumberbox/</url>
+      
+        <content type="html"><![CDATA[<p>一开始我的写法是这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;mui-numbox&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-minus&quot; type=&quot;button&quot;&gt;-&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;input class=&quot;mui-input-numbox&quot; type=&quot;number&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;button class=&quot;mui-btn mui-btn-numbox-plus&quot; type=&quot;button&quot;&gt;+&lt;/button&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p><p>但是如果在js中动态加载这段代码就会有问题了，例如我先定义一个div：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;div class=&quot;mui-content-padded&quot; id=&quot;default&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p><p>然后在js中进行加载：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">window.onload = function() &#123;</span><br><span class="line"></span><br><span class="line">var default1 = document.getElementById(&apos;default&apos;);</span><br><span class="line"></span><br><span class="line">var html1 = &quot;&lt;div class=\&quot;mui-numbox\&quot;&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-minus\&quot; type=\&quot;button\&quot;&gt;-&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;input class=\&quot;mui-input-numbox\&quot; type=\&quot;number\&quot; /&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;button class=\&quot;mui-btn mui-btn-numbox-plus\&quot; type=\&quot;button\&quot;&gt;+&lt;/button&gt;&quot; +</span><br><span class="line"></span><br><span class="line">&quot;&lt;/div&gt;&quot;;</span><br><span class="line"></span><br><span class="line">console.log(html1);</span><br><span class="line"></span><br><span class="line">default1.innerHTML = html1;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p><p>此时，加载出来的页面是正常的，但是增加或减少时，不会有递增或者递减的效果。尝试过js的window.onload换成mui.plusReady()函数，但问题依然存在。<br><br><strong>解决方案</strong>:<br><br>在innerHTML后加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">default1.innerHTML = html1;</span><br><span class="line">mui(&apos;.mui-numbox&apos;).numbox();</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
       <categories>
-        <category>前端</category>
+          
+          <category> 前端 </category>
+          
       </categories>
-      <tags>
-        <tag>mui</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[oauth2]]></title>
-    <url>%2F2018%2F11%2F29%2Foauth2%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;公司的物业管理app项目用到了oauth2作为安卓端和服务器端的安全认证协议，一开始拿到这套代码是一脸懵逼的，因为当时完全没有接触过oauth相关的开发，那么只有一条路——自学。通过查找资料看文档，慢慢地对oauth2熟悉了，这段时间虽然很痛苦但是成长是非常快的。&emsp;&emsp;当时公司是用这个项目——oauth2-shiro做的oauth2二次开发，用到了shiro相关知识，好吧，又是一个盲区，于是shiro也学会了~这份源码我是一步一步地打断点看流程，最后才弄懂整个流程，不得不佩服作者的设计，真的是太巧妙了，后来还好奇去查了这位称号为monkeyk的作者，原来是四川某知名互联网的技术总监，真不愧是技术大牛！&emsp;&emsp;对于oauth2的相关基本概念，建议直接看这篇来自阮一峰的文章——理解OAuth 2.0。&emsp;&emsp;oauth2的应用场景十分广泛，比如在一些第三方的app或网站会提供微信登录的方式让用户扫码登录，只要你稍微留意一下跳转的url，你会看到url都会带有oauth2的字符串。&emsp;&emsp;公司的项目]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[解决js中a标签嵌套的问题]]></title>
-    <url>%2F2018%2F11%2F29%2F%E8%A7%A3%E5%86%B3js%E4%B8%ADa%E6%A0%87%E7%AD%BE%E5%B5%8C%E5%A5%97%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[公司的项目前端是用jsp写的，引入自定义的js来动态加载dom，在做一个需求时，我需要用到a标签嵌套(虽然可以不这么做，但我当时只想到这种办法，于是硬着头皮写了，结果一堆坑).其实在html中，a标签是不允许嵌套的，会导致浏览器解析成两个a标签。12345678&lt;!-- a标签进行嵌套的时候 --&gt;&lt;a href=&quot;#outer&quot;&gt;outerA &lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt;&lt;/a&gt; &lt;!-- 而浏览器则会解析成 -- &gt;&lt;a href=&quot;#outer&quot;&gt;outerA&lt;/a&gt;&lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt; 网上搜了解决办法说用object标签包裹，后来发现这是在给自己继续挖坑，根本不符合要求好吗！真正的解决办法是将外层a标签改为行内块级元素即display:inline-block;设置height/width并设置为绝对定位将其放在里层a标签的位置，通过调整里层a标签及外层a的z-index大小，可以让鼠标点击到a标签。虽然正确的开发方式中很少这样做，但这个经历也是为自己奇怪的逻辑长了记性。]]></content>
+      
+      
+        <tags>
+            
+            <tag> mui </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>解决js中a标签嵌套的问题</title>
+      <link href="/2018/11/29/%E8%A7%A3%E5%86%B3js%E4%B8%ADa%E6%A0%87%E7%AD%BE%E5%B5%8C%E5%A5%97%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2018/11/29/%E8%A7%A3%E5%86%B3js%E4%B8%ADa%E6%A0%87%E7%AD%BE%E5%B5%8C%E5%A5%97%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>公司的项目前端是用jsp写的，引入自定义的js来动态加载dom，在做一个需求时，我需要用到a标签嵌套(虽然可以不这么做，但我当时只想到这种办法，于是硬着头皮写了，结果一堆坑).<br>其实在html中，a标签是不允许嵌套的，会导致浏览器解析成两个a标签。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- a标签进行嵌套的时候 --&gt;</span><br><span class="line">&lt;a href=&quot;#outer&quot;&gt;outerA</span><br><span class="line">     &lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt;</span><br><span class="line">&lt;/a&gt;</span><br><span class="line"> </span><br><span class="line">&lt;!-- 而浏览器则会解析成 -- &gt;</span><br><span class="line">&lt;a href=&quot;#outer&quot;&gt;outerA&lt;/a&gt;</span><br><span class="line">&lt;a href=&quot;#inner&quot;&gt;innerA&lt;/a&gt;</span><br></pre></td></tr></table></figure></p><p>网上搜了解决办法说用object标签包裹，后来发现这是在给自己继续挖坑，根本不符合要求好吗！<br>真正的解决办法是将外层a标签改为行内块级元素即display:inline-block;设置height/width并设置为绝对定位将其放在里层a标签的位置，通过调整里层a标签及外层a的z-index大小，可以让鼠标点击到a标签。虽然正确的开发方式中很少这样做，但这个经历也是为自己奇怪的逻辑长了记性。</p>]]></content>
+      
+      
       <categories>
-        <category>前端</category>
+          
+          <category> 前端 </category>
+          
       </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[思考如何快速学习一门新的编程语言？]]></title>
-    <url>%2F2018%2F11%2F29%2F%E6%80%9D%E8%80%83%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E6%96%B0%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;我一直认为编程是不局限于任何一种语言的。在你有任何想法的时候，都可以编写软件，然后愿望就实现了。目前的软件开发有很多内容可以直接复用，你可以找到所有已经编译好的组件，而且是免费的，拿来就可以用。建立好一段代码后，就可以重复使用无数次，听起来好像很牛逼的样子。但有时候不是这样的。编程带给人的惊喜只是暂时的。在建立了很多代码以后，在写代码的过程中你会不断遇到让人迷惑的错误。因为一旦你习惯了特定语言和框架的模式后，当你需要第二种天性去掌握所选语言中非自然的语法时，编程的好像就变成了一件很尴尬的事情。&emsp;&emsp;更别提我们有无数种不同的编程语言。每当开发人员面对特殊语言的语法而深感沮丧时，很幸运的是“自然选择”已经淘汰了很多很差的语言（有时也有意外，比如我至今还没搞懂PHP存在的意义）。一旦一门新的语言开始在一群开发者中流行起来，那么往往会出现了一个新的开发者社区，程序员们互相合作，努力让这门特殊的语言发展壮大。&emsp;&emsp;每一种新语言的诞生所带来的创新，都能造福我们每一个人。但是有时也有不利的一面。有些人可能写了一些非常有用的开源JavaScript库，但是从事Python的开发者却完全没法用。他们不得不自己写一个Python版本的函数库，或者用JavaScript重写所有代码。再想想当前有多少种语言和框架。只要你在软件开发这一行呆了一定的时间，早就已经习以为常了，所以我常常和同事说，java有的东西，python肯定也有，python有的，java肯定也有，因为两者的生态圈实在太大了，总会有些技术大神会想着去造一个属于自己熟悉的语言的轮子，顶多是借鉴了一下其他语言的思想。&emsp;&emsp;回归正题，如何快速的去学习一门新的语言的呢？这对于程序员来说非常重要，我们不应该局限于任何一门语言做开发，因为程序员是解决问题的，是不局限于任何一种方法，任何一种语言地去解决问题！ 首先，我们先思考语言都包含些什么？各种编程语言都在以下三个方面上存在不同：语法、语义和标准库。1.语法如果不遵循语法，那么你会在编辑器中看到各种弯弯曲曲的红线，而且你的代码也无法通过编译器或解释器。JavaScript使用大括号，布尔型使用小写的true和false，用//表示行注释。123456function doSomething() &#123; a = true; if (a) &#123; ... // Do something. &#125; &#125; Python用缩进，布尔型用首字母大写的True和False表示，用#表示行注释。1234def doSomething(): a = True if a: ... # Do something. 还有一门很奇葩的语言叫Haskell，是一个美国逻辑学家Haskell Brooks Curry发明的，它的语法是这样的：123456doSomething :: IO () doSomething = do let a = True if a then ... -- Do something. else return () 2.语义所有编程语言都有大多数相同的特征：变量赋值、数字相加、字符串操作、调用函数、等等。然而，每种语言都有特殊的思想，以特定的方式运行。我觉得这很难用文字去解释，所以我在google找到了这样的资料： 在“声明类”，“调用函数”，或“定义参数的类型”时，你定义了程序的语义。有些语言遵循这样一套规则，而其他的遵循别的规则。比如：C++中声明的类可以延伸到多个类。当你使用“+”将数字和字符串加到一起的时候，根据语言的语义会得出不同的结果。一些编程语言会因为类型不匹配而导致编译失败，但是有些编程语言会自动将数字转换成十进制的字符串。emmmm。。。我觉得这是我看的资料里解释的最好的了，嗯，maybe。语法与语义的关系就相当于用单词（语法）来表达想法（语义）。你可以通过语言的语法来表达语义。 3.标准库 每种语言都有各自的软件包，我们称之为“标准库”，有的再继续封装，叫sdk，开发包啥的，但本质的含义都一样。Python用print()在控制台输出信息，JavaScript用console.log()，Java就是System.out.print()，所以有没觉得都是这么一个套路，只是各自的玩法不一样。每个标准库基本上都不同于其他库：一些库只提供最低限度的方法，而有些库则提供非常广泛的函数，所以开发人员基本上经常要在这个基础上再封装一层自己的兵器库。其实我有想过，软件开发都已经发展到这个年代了，怎么没有一个大牛开发出一种工具可以将代码从一种语言转换成另一种语言，这完全可行啊。我猜肯定有人试过，但是放弃了。因为如果不将整个标准库转换过去的话是没有实用性的。当你整来整去，写两个demo跑个hello world熟悉了这些之后，你可以考虑把标准库写成API了，API是对外的，你可以用其他语言重写模块内部的代码，但API不会发生改变。调用print(“Hello”)与Java调用System.out.println(“Hello”)不同，但是其实它们可以是同一个API。当你都熟悉了该语言的基本操作后，这是你再试试弄成模块化。这就已经达到业务的层面了，恭喜，你已经可以把这门语言做为你的生产工具了！ 参考：https://medium.com/@fwouts/the-zenc-master-plan-c693bf3b265ehttps://blog.csdn.net/weiyuefei/article/details/80395316]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[json直接通过key取value]]></title>
-    <url>%2F2018%2F11%2F28%2Fjson%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87key%E5%8F%96value%2F</url>
-    <content type="text"><![CDATA[在爬虫的时候爬取到的数据经常是复杂的json格式，这时如果用java的fastjson取解析会变得非常繁琐，这时就想有没办法可以遍历整个json，直接通过target所在的key直接取到value，答案是有的。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263public static String getValueByKeyFromJson(String json, String oriKey) &#123; if (json == null || json == &quot;&quot;) &#123; return null; &#125; boolean isJsonString = isJSONValid(json); if (!isJsonString) &#123; return null; &#125; String key = oriKey.trim(); Object object = JSON.parse(json); Class&lt;? extends Object&gt; cls = object.getClass(); if (cls == JSONObject.class) &#123; JSONObject jo = (JSONObject) object; if (jo.containsKey(key)) &#123; return jo.getString(key); &#125; for (Object o : jo.values()) &#123; boolean isJson = isJSONValid(o.toString()); if (isJson) &#123; String tmp = getValueByKeyFromJson(o.toString(), key); if (tmp == null) &#123; continue; &#125; else &#123; return tmp; &#125; &#125; else &#123; continue; &#125; &#125; &#125; else if (cls == JSONArray.class) &#123; JSONArray ja = (JSONArray) object; int size = ja.size(); for (int i = 0; i &lt; size; i++) &#123; Object o = ja.get(i); if (o != null &amp;&amp; o != &quot;&quot;) &#123; String tmp = getValueByKeyFromJson(o.toString(), key); if (tmp == null) &#123; continue; &#125; else &#123; return tmp; &#125; &#125; &#125; &#125; return null; &#125; public static boolean isJSONValid(String text) &#123; if (text == null || &quot;&quot;.equals(text)) &#123; return false; &#125; try &#123; JSONObject.parseObject(text); &#125; catch (Exception ex) &#123; try &#123; JSONObject.parseArray(text); &#125; catch (Exception ex1) &#123; return false; &#125; &#125; return true; &#125; 这是封装的一个方法，思想就是遍历这个json对象，遍历每一个key，当target的key与所传的key碰撞时便返回该value，这里用到了递归的方法，不断地去递归整个json。该方法目前有两个缺陷:1.当有多个相同的key时，只会返回第一个2.当解析的json非常复杂时，解析会变得比较慢，因为它还是需要遍历每一个key，不断的去递归。有没什么优化性能的好方法？其中的算法还是可以再仔细斟酌的。所以，可以适度使用该方法，比如先取直接父级的key，让它减少递归次数等等。]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[使用native2ascii工具处理国际化资源文件问题]]></title>
-    <url>%2F2018%2F11%2F28%2F%E4%BD%BF%E7%94%A8native2ascii%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E5%9B%BD%E9%99%85%E5%8C%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[在WEB-INF/classes目录下，按住shift键右键打开命令行，然后输入以下命令，按自己情况命名。native2ascii是JDK自带的转码工具，所以装了JDK后就可以直接运行！1native2ascii -encoding UTF-8 mess.properties mess_zh.propertis]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[查询mysql数据库中是否存在某个字段]]></title>
-    <url>%2F2018%2F11%2F28%2F%E6%9F%A5%E8%AF%A2mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%2F</url>
-    <content type="text"><![CDATA[通过这个查到所有的表，再通过这个结果来查询对应表的对应字段值select table_name from information_schema.columns where table_schema = ‘库名’ and column_name=’字段名’; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效果如下：]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[解决eclipse使用lombok插件问题,最正确的解决方式！]]></title>
-    <url>%2F2018%2F11%2F28%2F%E8%A7%A3%E5%86%B3eclipse%E4%BD%BF%E7%94%A8lombok%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98-%E6%9C%80%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%81%2F</url>
-    <content type="text"><![CDATA[最新公司项目需要用到微信开发sdk，sdk用到lombok，项目却一直报错，提示没有getter和setter方法。百度有很多解决方式，但各不一样，都不能奏效，最终解决方法在这：12-javaagent:lombok.jar具体目录-Xbootclasspath/a:lombok.jar具体目录 当然，你用idea的话这些都不是问题]]></content>
+      
+      
+    </entry>
+    
+    <entry>
+      <title>思考如何快速学习一门新的编程语言？</title>
+      <link href="/2018/11/29/%E6%80%9D%E8%80%83%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E6%96%B0%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F/"/>
+      <url>/2018/11/29/%E6%80%9D%E8%80%83%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E6%96%B0%E7%9A%84%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;&emsp;我一直认为编程是不局限于任何一种语言的。在你有任何想法的时候，都可以编写软件，然后愿望就实现了。目前的软件开发有很多内容可以直接复用，你可以找到所有已经编译好的组件，而且是免费的，拿来就可以用。建立好一段代码后，就可以重复使用无数次，听起来好像很牛逼的样子。但有时候不是这样的。编程带给人的惊喜只是暂时的。在建立了很多代码以后，在写代码的过程中你会不断遇到让人迷惑的错误。因为一旦你习惯了特定语言和框架的模式后，当你需要第二种天性去掌握所选语言中非自然的语法时，编程的好像就变成了一件很尴尬的事情。<br>&emsp;&emsp;更别提我们有无数种不同的编程语言。每当开发人员面对特殊语言的语法而深感沮丧时，很幸运的是“自然选择”已经淘汰了很多很差的语言（有时也有意外，比如我至今还没搞懂PHP存在的意义）。一旦一门新的语言开始在一群开发者中流行起来，那么往往会出现了一个新的开发者社区，程序员们互相合作，努力让这门特殊的语言发展壮大。<br>&emsp;&emsp;每一种新语言的诞生所带来的创新，都能造福我们每一个人。但是有时也有不利的一面。有些人可能写了一些非常有用的开源JavaScript库，但是从事Python的开发者却完全没法用。他们不得不自己写一个Python版本的函数库，或者用JavaScript重写所有代码。再想想当前有多少种语言和框架。只要你在软件开发这一行呆了一定的时间，早就已经习以为常了，所以我常常和同事说，java有的东西，python肯定也有，python有的，java肯定也有，因为两者的生态圈实在太大了，总会有些技术大神会想着去造一个属于自己熟悉的语言的轮子，顶多是借鉴了一下其他语言的思想。<br>&emsp;&emsp;回归正题，如何快速的去学习一门新的语言的呢？这对于程序员来说非常重要，我们不应该局限于任何一门语言做开发，因为程序员是解决问题的，是不局限于任何一种方法，任何一种语言地去解决问题！</p><p>首先，我们先思考语言都包含些什么？各种编程语言都在以下三个方面上存在不同：语法、语义和标准库。<br>1.语法<br>如果不遵循语法，那么你会在编辑器中看到各种弯弯曲曲的红线，而且你的代码也无法通过编译器或解释器。<br>JavaScript使用大括号，布尔型使用小写的true和false，用//表示行注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function doSomething() &#123;  </span><br><span class="line">  a = true;  </span><br><span class="line">  if (a) &#123;  </span><br><span class="line">    ... // Do something.  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>Python用缩进，布尔型用首字母大写的True和False表示，用#表示行注释。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def doSomething():  </span><br><span class="line">  a = True  </span><br><span class="line">  if a:  </span><br><span class="line">    ... # Do something.</span><br></pre></td></tr></table></figure></p><p>还有一门很奇葩的语言叫Haskell，是一个美国逻辑学家Haskell Brooks Curry发明的，它的语法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">doSomething :: IO ()  </span><br><span class="line">doSomething = do  </span><br><span class="line">  let a = True  </span><br><span class="line">  if a  </span><br><span class="line">    then ... -- Do something.  </span><br><span class="line">    else return ()</span><br></pre></td></tr></table></figure></p><p>2.语义<br><br>所有编程语言都有大多数相同的特征：变量赋值、数字相加、字符串操作、调用函数、等等。<br>然而，每种语言都有特殊的思想，以特定的方式运行。我觉得这很难用文字去解释，所以我在google找到了这样的资料：</p><p>在“声明类”，“调用函数”，或“定义参数的类型”时，你定义了程序的语义。有些语言遵循这样一套规则，而其他的遵循别的规则。比如：C++中声明的类可以延伸到多个类。当你使用“+”将数字和字符串加到一起的时候，根据语言的语义会得出不同的结果。一些编程语言会因为类型不匹配而导致编译失败，但是有些编程语言会自动将数字转换成十进制的字符串。<br>emmmm。。。我觉得这是我看的资料里解释的最好的了，嗯，maybe。<br>语法与语义的关系就相当于用单词（语法）来表达想法（语义）。你可以通过语言的语法来表达语义。<br></p><p>3.标准库 <br><br>每种语言都有各自的软件包，我们称之为“标准库”，有的再继续封装，叫sdk，开发包啥的，但本质的含义都一样。Python用print()在控制台输出信息，JavaScript用console.log()，Java就是System.out.print()，所以有没觉得都是这么一个套路，只是各自的玩法不一样。每个标准库基本上都不同于其他库：一些库只提供最低限度的方法，而有些库则提供非常广泛的函数，所以开发人员基本上经常要在这个基础上再封装一层自己的兵器库。<br>其实我有想过，软件开发都已经发展到这个年代了，怎么没有一个大牛开发出一种工具可以将代码从一种语言转换成另一种语言，这完全可行啊。我猜肯定有人试过，但是放弃了。因为如果不将整个标准库转换过去的话是没有实用性的。<br>当你整来整去，写两个demo跑个hello world熟悉了这些之后，你可以考虑把标准库写成API了，API是对外的，你可以用其他语言重写模块内部的代码，但API不会发生改变。调用print(“Hello”)与Java调用System.out.println(“Hello”)不同，但是其实它们可以是同一个API。<br>当你都熟悉了该语言的基本操作后，这是你再试试弄成模块化。这就已经达到业务的层面了，恭喜，你已经可以把这门语言做为你的生产工具了！</p><p>参考：<a href="https://medium.com/@fwouts/the-zenc-master-plan-c693bf3b265e" target="_blank" rel="noopener">https://medium.com/@fwouts/the-zenc-master-plan-c693bf3b265e</a><br><a href="https://blog.csdn.net/weiyuefei/article/details/80395316" target="_blank" rel="noopener">https://blog.csdn.net/weiyuefei/article/details/80395316</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>json直接通过key取value</title>
+      <link href="/2018/11/28/json%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87key%E5%8F%96value/"/>
+      <url>/2018/11/28/json%E7%9B%B4%E6%8E%A5%E9%80%9A%E8%BF%87key%E5%8F%96value/</url>
+      
+        <content type="html"><![CDATA[<p>在爬虫的时候爬取到的数据经常是复杂的json格式，这时如果用java的fastjson取解析会变得非常繁琐，这时就想有没办法可以遍历整个json，直接通过target所在的key直接取到value，答案是有的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public static String getValueByKeyFromJson(String json, String oriKey) &#123;</span><br><span class="line">        if (json == null || json == &quot;&quot;) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        boolean isJsonString = isJSONValid(json);</span><br><span class="line">        if (!isJsonString) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        String key = oriKey.trim();</span><br><span class="line">        Object object = JSON.parse(json);</span><br><span class="line">        Class&lt;? extends Object&gt; cls = object.getClass();</span><br><span class="line">        if (cls == JSONObject.class) &#123;</span><br><span class="line">            JSONObject jo = (JSONObject) object;</span><br><span class="line">            if (jo.containsKey(key)) &#123;</span><br><span class="line">                return jo.getString(key);</span><br><span class="line">            &#125;</span><br><span class="line">            for (Object o : jo.values()) &#123;</span><br><span class="line">                boolean isJson = isJSONValid(o.toString());</span><br><span class="line">                if (isJson) &#123;</span><br><span class="line">                    String tmp = getValueByKeyFromJson(o.toString(), key);</span><br><span class="line">                    if (tmp == null) &#123;</span><br><span class="line">                        continue;</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        return tmp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; else if (cls == JSONArray.class) &#123;</span><br><span class="line">            JSONArray ja = (JSONArray) object;</span><br><span class="line">            int size = ja.size();</span><br><span class="line">            for (int i = 0; i &lt; size; i++) &#123;</span><br><span class="line">                Object o = ja.get(i);</span><br><span class="line">                if (o != null &amp;&amp; o != &quot;&quot;) &#123;</span><br><span class="line">                    String tmp = getValueByKeyFromJson(o.toString(), key);</span><br><span class="line">                    if (tmp == null) &#123;</span><br><span class="line">                        continue;</span><br><span class="line">                    &#125; else &#123;</span><br><span class="line">                        return tmp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean isJSONValid(String text) &#123;</span><br><span class="line">        if (text == null || &quot;&quot;.equals(text)) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        try &#123;</span><br><span class="line">            JSONObject.parseObject(text);</span><br><span class="line">        &#125; catch (Exception ex) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                JSONObject.parseArray(text);</span><br><span class="line">            &#125; catch (Exception ex1) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p>这是封装的一个方法，思想就是遍历这个json对象，遍历每一个key，当target的key与所传的key碰撞时便返回该value，这里用到了递归的方法，不断地去递归整个json。该方法目前有两个缺陷:<br>1.当有多个相同的key时，只会返回第一个<br>2.当解析的json非常复杂时，解析会变得比较慢，因为它还是需要遍历每一个key，不断的去递归。有没什么优化性能的好方法？其中的算法还是可以再仔细斟酌的。<br>所以，可以适度使用该方法，比如先取直接父级的key，让它减少递归次数等等。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>使用native2ascii工具处理国际化资源文件问题</title>
+      <link href="/2018/11/28/%E4%BD%BF%E7%94%A8native2ascii%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E5%9B%BD%E9%99%85%E5%8C%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98/"/>
+      <url>/2018/11/28/%E4%BD%BF%E7%94%A8native2ascii%E5%B7%A5%E5%85%B7%E5%A4%84%E7%90%86%E5%9B%BD%E9%99%85%E5%8C%96%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/20170919004229913.png" alt="pic"><br><img src="/images/20170919004210724.png" alt="pic"><br>在WEB-INF/classes目录下，按住shift键右键打开命令行，然后输入以下命令，按自己情况命名。native2ascii是JDK自带的转码工具，所以装了JDK后就可以直接运行！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">native2ascii -encoding UTF-8 mess.properties mess_zh.propertis</span><br></pre></td></tr></table></figure></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>查询mysql数据库中是否存在某个字段</title>
+      <link href="/2018/11/28/%E6%9F%A5%E8%AF%A2mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5/"/>
+      <url>/2018/11/28/%E6%9F%A5%E8%AF%A2mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5/</url>
+      
+        <content type="html"><![CDATA[<p>通过这个查到所有的表，再通过这个结果来查询对应表的对应字段值<br>select table_name from information_schema.columns where table_schema = ‘库名’ and column_name=’字段名’;</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;效果如下：<br><img src="/images/20180130090112998.png" alt="pic"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    <entry>
+      <title>解决eclipse使用lombok插件问题,最正确的解决方式！</title>
+      <link href="/2018/11/28/%E8%A7%A3%E5%86%B3eclipse%E4%BD%BF%E7%94%A8lombok%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98-%E6%9C%80%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%81/"/>
+      <url>/2018/11/28/%E8%A7%A3%E5%86%B3eclipse%E4%BD%BF%E7%94%A8lombok%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98-%E6%9C%80%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%81/</url>
+      
+        <content type="html"><![CDATA[<p>最新公司项目需要用到微信开发sdk，sdk用到lombok，项目却一直报错，提示没有getter和setter方法。百度有很多解决方式，但各不一样，都不能奏效，最终解决方法在这：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-javaagent:lombok.jar具体目录</span><br><span class="line">-Xbootclasspath/a:lombok.jar具体目录</span><br></pre></td></tr></table></figure></p><p><strong>当然，你用idea的话这些都不是问题</strong></p>]]></content>
+      
+      
       <categories>
-        <category>开发工具</category>
+          
+          <category> 开发工具 </category>
+          
       </categories>
-      <tags>
-        <tag>eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[拦截手机app发起的请求，获取请求信息！调试爬虫必备!]]></title>
-    <url>%2F2018%2F11%2F26%2F%E6%8B%A6%E6%88%AA%E6%89%8B%E6%9C%BAapp%E5%8F%91%E8%B5%B7%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%EF%BC%81%E8%B0%83%E8%AF%95%E7%88%AC%E8%99%AB%E5%BF%85%E5%A4%87%2F</url>
-    <content type="text"><![CDATA[在windows系统下：最近在做Android接口调试，用postman发请求时总是报500空指针异常，获取不到请求的数据，我就在想是不是请求body没过去，后台接受不到，手机app是正常使用的。所以我就想到拦截手机的请求，看看请求头是什么，是不是有特殊要求。然后就百度，知道有Fiddler这种东西，也就去试试了。最终成功解决问题！！！附上Fiddler使用教程，非常感谢这篇文章：https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html在mac下：建议使用Charles 值得一提的是，]]></content>
+      
+      
+        <tags>
+            
+            <tag> eclipse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>拦截手机app发起的请求，获取请求信息！调试爬虫必备!</title>
+      <link href="/2018/11/26/%E6%8B%A6%E6%88%AA%E6%89%8B%E6%9C%BAapp%E5%8F%91%E8%B5%B7%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%EF%BC%81%E8%B0%83%E8%AF%95%E7%88%AC%E8%99%AB%E5%BF%85%E5%A4%87/"/>
+      <url>/2018/11/26/%E6%8B%A6%E6%88%AA%E6%89%8B%E6%9C%BAapp%E5%8F%91%E8%B5%B7%E7%9A%84%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E4%BF%A1%E6%81%AF%EF%BC%81%E8%B0%83%E8%AF%95%E7%88%AC%E8%99%AB%E5%BF%85%E5%A4%87/</url>
+      
+        <content type="html"><![CDATA[<p><strong>在windows系统下：</strong><br>最近在做Android接口调试，用postman发请求时总是报500空指针异常，获取不到请求的数据，我就在想是不是请求body没过去，后台接受不到，手机app是正常使用的。所以我就想到拦截手机的请求，看看请求头是什么，是不是有特殊要求。然后就百度，知道有Fiddler这种东西，也就去试试了。最终成功解决问题！！！<br>附上<strong>Fiddler使用教程</strong>，非常感谢这篇文章：<a href="https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/3a2f7c2e0d5f2126aed61175.html</a><br><strong>在mac下：</strong><br>建议使用Charles</p><p><strong>值得一提的是，</strong></p>]]></content>
+      
+      
       <categories>
-        <category>开发工具</category>
+          
+          <category> 开发工具 </category>
+          
       </categories>
-      <tags>
-        <tag>手机抓包</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[java中main方法执行的问题]]></title>
-    <url>%2F2018%2F11%2F26%2Fjava%E4%B8%ADmain%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[在eclipse中，main方法一定要写在与源文件名相同的类里才可以，无论这个类是不是public，只要类名与文件名相同即可！否则右键run as没有java application这个选项（Eclipse内部设置）！ 但是，在cmd下，这种情况是可以运行的：文件名为DanLiModel.java12345678910111213141516171819 public class DanLiModel &#123; private static DanLiModel danLi; private DanLiModel() &#123;&#125;; public static DanLiModel getDanLi() &#123; if (danLi==null) &#123; danLi=new DanLiModel(); &#125; return danLi; &#125;&#125; class Test&#123; public static void main(String[] args) &#123; DanLiModel d1=DanLiModel.getDanLi(); DanLiModel d2=DanLiModel.getDanLi(); System.out.println(d1==d2); &#125;&#125; 在cmd中编译DanLiModel.java，然后运行Test.class，返回true。 在eclipse中右键run as没有java application的选项。 以上情况：说明：1.main方法不一定要在public修饰的类中才能运行。2.main方法不一定要在与源文件同名的public修饰的类才能运行。3.eclipse内部的设置是main方法只能在与源文件同名的public修饰的类中才可以运行。4.无论是在eclipse还是在cmd，类名可以和源文件名不同，能通过编译，但是不能运行，因为编译后的类名变了，在eclipse中还是会去选择运行原来的类名（文件名）{Eclipse内部设置}，在cmd中编译出来的.class文件与源文件名字不同，只可以运行编译后那个类名。如果类名是用public修饰的，那么无论在eclipse还是在cmd都不能编译，这种情况下源文件名必须与类名相同。]]></content>
+      
+      
+        <tags>
+            
+            <tag> 手机抓包 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>java中main方法执行的问题</title>
+      <link href="/2018/11/26/java%E4%B8%ADmain%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2018/11/26/java%E4%B8%ADmain%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>在eclipse中，main方法一定要写在与源文件名相同的类里才可以，无论这个类是不是public，只要类名<br>与文件名相同即可！否则右键run as没有java application这个选项（Eclipse内部设置）！</p><p>但是，在cmd下，这种情况是可以运行的：<a id="more"></a>文件名为DanLiModel.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> public class DanLiModel &#123;</span><br><span class="line">private static DanLiModel danLi;</span><br><span class="line"> </span><br><span class="line">private DanLiModel() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">public static DanLiModel getDanLi() &#123;</span><br><span class="line">if (danLi==null) &#123;</span><br><span class="line">danLi=new DanLiModel();</span><br><span class="line">&#125;</span><br><span class="line">return danLi;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"> class Test&#123;</span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">DanLiModel d1=DanLiModel.getDanLi();</span><br><span class="line">DanLiModel d2=DanLiModel.getDanLi();</span><br><span class="line">System.out.println(d1==d2);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>在cmd中编译DanLiModel.java，然后运行Test.class，返回true。</p><p>在eclipse中右键run as没有java application的选项。</p><p>以上情况：说明：<br>1.main方法不一定要在public修饰的类中才能运行。<br>2.main方法不一定要在与源文件同名的public修饰的类才能运行。<br>3.eclipse内部的设置是main方法只能在与源文件同名的public修饰的类中才可以运行。<br>4.无论是在eclipse还是在cmd，类名可以和源文件名不同，能通过编译，但是不能运行，因为编译后的<br>类名变了，在eclipse中还是会去选择运行原来的类名（文件名）{Eclipse内部设置}，在cmd中编译出来的.class文件与源文件名字<br>不同，只可以运行编译后那个类名。如果类名是用public修饰的，那么无论在eclipse还是在cmd都不能编译，这种情况下源文件名必须与类名相同。</p>]]></content>
+      
+      
       <categories>
-        <category>java</category>
-        <category>开发工具</category>
+          
+          <category> java </category>
+          
+          <category> 开发工具 </category>
+          
       </categories>
-      <tags>
-        <tag>eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[oxygen版本jsp文件BUG问题]]></title>
-    <url>%2F2018%2F11%2F26%2Foxygen%E7%89%88%E6%9C%ACjsp%E6%96%87%E4%BB%B6BUG%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[1&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt; 引入c标签库并且也已经成功导入相应jar包后还是c标签报错，这时，可以看看自己的eclipse版本是否是oxygen。这是eclipse oxygen的一个bug，官方已经给出解决方法：https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0 点进去将下载的文件解压缩，找到plugins下面的jar包，然后找到本机eclipse安装目录，进入plugins ，org.eclipse.wst.html.core（后面可能有日期） 复制该jar包的文件名，将新的jar包名字改为此名字，并且替换掉原来jar，再次打开eclipse ，如果仍然报错，clean一下 。 一定要按上面步骤替换，不然可能替换后会导致eclipse异常!]]></content>
+      
+      
+        <tags>
+            
+            <tag> eclipse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>oxygen版本jsp文件BUG问题</title>
+      <link href="/2018/11/26/oxygen%E7%89%88%E6%9C%ACjsp%E6%96%87%E4%BB%B6BUG%E9%97%AE%E9%A2%98/"/>
+      <url>/2018/11/26/oxygen%E7%89%88%E6%9C%ACjsp%E6%96%87%E4%BB%B6BUG%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot;%&gt;</span><br></pre></td></tr></table></figure><p>引入c标签库并且也已经成功导入相应jar包后还是c标签报错，这时，可以看看自己的eclipse版本是否是oxygen。<strong>这是eclipse oxygen的一个bug</strong>，官方已经给出解决方法：<br><a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0" target="_blank" rel="noopener">https://bugs.eclipse.org/bugs/show_bug.cgi?id=518987#c0</a></p><p><a id="more"></a>点进去将下载的文件解压缩，找到plugins下面的jar包，然后找到本机eclipse安装目录，进入plugins ，org.eclipse.wst.html.core（后面可能有日期） 复制该jar包的文件名，将新的jar包名字改为此名字，并且替换掉原来jar，再次打开eclipse ，如果仍然报错，clean一下 。</p><p><strong>一定要按上面步骤替换，不然可能替换后会导致eclipse异常!</strong></p>]]></content>
+      
+      
       <categories>
-        <category>开发工具</category>
+          
+          <category> 开发工具 </category>
+          
       </categories>
-      <tags>
-        <tag>eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[解决mybatis中字段重名的问题尝试和总结]]></title>
-    <url>%2F2018%2F11%2F26%2F%E8%A7%A3%E5%86%B3mybatis%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%9D%E8%AF%95%E5%92%8C%E6%80%BB%E7%BB%93%2F</url>
-    <content type="text"><![CDATA[1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。查询时给列取别名（多表查询）： 1234SELECT u.*,o.id as oid,CODE,total,user_id FROM tb_order o,tb_user u WHERE o.user_id = u.id AND o.id = #&#123;id&#125; 映射的column也要对应查询时的别名：123&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt; 2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。]]></content>
+      
+      
+        <tags>
+            
+            <tag> eclipse </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>解决mybatis中字段重名的问题尝试和总结</title>
+      <link href="/2018/11/26/%E8%A7%A3%E5%86%B3mybatis%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%9D%E8%AF%95%E5%92%8C%E6%80%BB%E7%BB%93/"/>
+      <url>/2018/11/26/%E8%A7%A3%E5%86%B3mybatis%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%87%8D%E5%90%8D%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%9D%E8%AF%95%E5%92%8C%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<p>1.多表查询时，当列id重名时，mybatis会默认使用查询出的第一个id列（另一个列被覆盖），为了区分同名的列，给列取一个别名。取完别名后找到对应的colume中也要做出修改。<br>查询时给列取别名（多表查询）： <a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT u.*,o.id as oid,CODE,total,user_id </span><br><span class="line">FROM tb_order o,tb_user u </span><br><span class="line">WHERE o.user_id = u.id </span><br><span class="line">AND o.id = #&#123;id&#125;</span><br></pre></td></tr></table></figure></p><p>映射的column也要对应查询时的别名：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;id property=&quot;id&quot; column=&quot;oid&quot; /&gt;</span><br><span class="line">&lt;result property=&quot;code&quot; column=&quot;code&quot; /&gt;</span><br><span class="line">&lt;result property=&quot;total&quot; column=&quot;total&quot; /&gt;</span><br></pre></td></tr></table></figure></p><p>2.当对查询出来的数据有疑惑时，可以复制sql语句到navicat中查询，与真正的结果比较，因为mybatis的查询机制可能会不同，除非自己封装框架。以后遇到sql语句问题也一样。<br>3.还有的就是如果在配置文件中（xml，properties）eclipse给出了拼写警告可能会影响程序正常执行。可通过在eclipse下的Window–Preference输入spell，然后把第一个复选框“Enable spell checking“给去掉就可以了。<br>以上就是我在解决mybatis中字段重名的问题过程中的尝试和总结。</p>]]></content>
+      
+      
       <categories>
-        <category>web</category>
+          
+          <category> web </category>
+          
       </categories>
-      <tags>
-        <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[java中经常用到的自动装箱和自动拆箱]]></title>
-    <url>%2F2018%2F11%2F26%2Fjava%E4%B8%AD%E7%BB%8F%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1%2F</url>
-    <content type="text"><![CDATA[首先，装箱和拆箱是jdk1.5之后的概念。java语言规范中说道：在许多情况下包装与解包装是由编译器自行完成的（在这种情况下包装成为装箱，解包装称为拆箱）；1234//声明一个Integer对象Integer num = 10;//以上的声明就是用到了自动的装箱：解析为Integer num = new Integer(10); 以上10是基本数据类型，Integer是封装类型。1234//装箱Integer num = 10;//拆箱int num1 = num; 以上是装箱和拆箱的例子。123Integer num = 10;//进行计算时隐含的有自动拆箱System.out.print(num--); 以上两行说明了在计算时自动进行了拆箱，因为对象是不能直接进行运算的，必须要转成基本数据类型，但是我们平常是直接就使用了，其实编译器是帮我们做了装箱和拆箱的事情。这种机制其实也是一种设计模式：亨元模式。 自动装箱拆箱不仅在基本数据类型中有应用，在String类中也有应用，比如我们经常声明一个String对象时：123String str = “sl”; //代替下面的声明方式 String str = new String(“sl”); 自动装箱和自动拆箱我们在实际开发中都不自觉地用了，但是有多少人知道其中的原理呢？]]></content>
+      
+      
+        <tags>
+            
+            <tag> mybatis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>java中经常用到的自动装箱和自动拆箱</title>
+      <link href="/2018/11/26/java%E4%B8%AD%E7%BB%8F%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1/"/>
+      <url>/2018/11/26/java%E4%B8%AD%E7%BB%8F%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E5%92%8C%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1/</url>
+      
+        <content type="html"><![CDATA[<p>首先，装箱和拆箱是jdk1.5之后的概念。java语言规范中说道：在许多情况下包装与解包装是由编译器自行完成的（在这种情况下包装成为装箱，解包装称为拆箱）；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//声明一个Integer对象</span><br><span class="line">Integer num = 10;</span><br><span class="line">//以上的声明就是用到了自动的装箱：解析为</span><br><span class="line">Integer num = new Integer(10);</span><br></pre></td></tr></table></figure></p><p>以上10是基本数据类型，Integer是封装类型。<a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//装箱</span><br><span class="line">Integer num = 10;</span><br><span class="line">//拆箱</span><br><span class="line">int num1 = num;</span><br></pre></td></tr></table></figure></p><p>以上是装箱和拆箱的例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer num = 10;</span><br><span class="line">//进行计算时隐含的有自动拆箱</span><br><span class="line">System.out.print(num--);</span><br></pre></td></tr></table></figure></p><p>以上两行说明了在计算时自动进行了拆箱，因为对象是不能直接进行运算的，必须要转成基本数据类型，但是我们平常是直接就使用了，其实编译器是帮我们做了装箱和拆箱的事情。这种机制其实也是一种设计模式：亨元模式。</p><p>自动装箱拆箱不仅在基本数据类型中有应用，在String类中也有应用，比如我们经常声明一个String对象时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String str = “sl”; </span><br><span class="line">//代替下面的声明方式 </span><br><span class="line">String str = new String(“sl”);</span><br></pre></td></tr></table></figure></p><p>自动装箱和自动拆箱我们在实际开发中都不自觉地用了，但是有多少人知道其中的原理呢？</p>]]></content>
+      
+      
       <categories>
-        <category>java</category>
+          
+          <category> java </category>
+          
       </categories>
-      <tags>
-        <tag>java基础</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
 </search>
