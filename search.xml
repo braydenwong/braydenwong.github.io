@@ -11,7 +11,7 @@
   <entry>
     <title><![CDATA[解决eclipse使用lombok插件问题,最正确的解决方式！]]></title>
     <url>%2F2018%2F11%2F28%2F%E8%A7%A3%E5%86%B3eclipse%E4%BD%BF%E7%94%A8lombok%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98-%E6%9C%80%E6%AD%A3%E7%A1%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E5%BC%8F%EF%BC%81%2F</url>
-    <content type="text"><![CDATA[以前公司项目需要用到微信开发sdk，sdk用到lombok，项目却一直报错，提示没有getter和setter方法。百度有很多解决方式，但各不一样，都不能奏效，最终解决方法在这：12-javaagent:lombok.jar具体目录-Xbootclasspath/a:lombok.jar具体目录 当然，你用idea的话这些都不是问题]]></content>
+    <content type="text"><![CDATA[之前的公司项目需要用到微信开发sdk，sdk用到lombok，项目却一直报错，提示没有getter和setter方法。百度有很多解决方式，但各不一样，都不能奏效，最终解决方法在这：12-javaagent:lombok.jar具体目录-Xbootclasspath/a:lombok.jar具体目录 当然，你用idea的话这些都不是问题]]></content>
       <categories>
         <category>开发工具</category>
       </categories>
