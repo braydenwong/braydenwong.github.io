@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2020重新营业啦!]]></title>
+    <url>%2F2020%2F07%2F22%2F2020%E9%87%8D%E6%96%B0%E8%90%A5%E4%B8%9A%2F</url>
+    <content type="text"><![CDATA[很高兴认识你，我决定重新运营我的个人网站。本站建于2018年，写了些文章，2019年几乎没动，于是今年打算重新整理，删除了部分文章，作为2020的新开始。本网站主要是写一些技术文章，但也会穿插一些生活中的随笔，希望可以得到你的关注哦～]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[oauth2]]></title>
     <url>%2F2018%2F11%2F29%2Foauth2%2F</url>
     <content type="text"><![CDATA[&emsp;&emsp;以前公司的物业管理app项目用到了oauth2作为安卓端和服务器端的安全认证协议，一开始拿到这套代码是一脸懵逼的，因为当时完全没有接触过oauth相关的开发，那么只有一条路——自学。通过查找资料看文档，慢慢地对oauth2熟悉了，这段时间虽然很痛苦但是成长是非常快的。&emsp;&emsp;当时公司是用这个项目——oauth2-shiro做的oauth2二次开发，用到了shiro相关知识，好吧，又是一个盲区，于是shiro也学会了~这份源码我是一步一步地打断点看流程，最后才弄懂整个流程，不得不佩服作者的设计，真的是太巧妙了，后来还好奇去查了这位称号为monkeyk的作者，原来是四川某知名互联网的技术总监！&emsp;&emsp;对于oauth2的相关基本概念，建议直接看这篇来自阮一峰的文章——理解OAuth 2.0。&emsp;&emsp;oauth2的应用场景十分广泛，比如在一些第三方的app或网站会提供微信登录的方式让用户扫码登录，只要你稍微留意一下跳转的url，你会看到url都会带有oauth2的字符串。&emsp;&emsp;]]></content>
