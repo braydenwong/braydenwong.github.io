@@ -79,16 +79,26 @@
 
 
 
-<meta name="description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Brayden Wong">
-<meta property="og:url" content="http://www.braydenwong.com/archives/index.html">
+<meta name="description" content="跳跃表是一种基于有序链表的拓展，简称跳表。下面正式开始了哦，跟着思路来，非常简单理解:   一.基本思想给定一个有序链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;5-&amp;gt;6-&amp;gt;7-&amp;gt;8跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跳跃表(SkipList)">
+<meta property="og:url" content="http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/index.html">
 <meta property="og:site_name" content="Brayden Wong">
-<meta property="og:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta property="og:description" content="跳跃表是一种基于有序链表的拓展，简称跳表。下面正式开始了哦，跟着思路来，非常简单理解:   一.基本思想给定一个有序链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;5-&amp;gt;6-&amp;gt;7-&amp;gt;8跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&h=169&f=png&s=54969">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379356d9486b7d?w=838&h=248&f=png&s=79113">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793595ac98526?w=777&h=463&f=png&s=136689">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379379018839b5?w=808&h=277&f=png&s=72105">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793b99b302678?w=751&h=289&f=png&s=69407">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793c1596233fc?w=790&h=275&f=png&s=97341">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793c4dedf858f?w=834&h=294&f=png&s=95833">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793ca5b75c29c?w=858&h=472&f=png&s=129574">
+<meta property="og:updated_time" content="2020-07-23T01:32:32.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Brayden Wong">
-<meta name="twitter:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta name="twitter:title" content="跳跃表(SkipList)">
+<meta name="twitter:description" content="跳跃表是一种基于有序链表的拓展，简称跳表。下面正式开始了哦，跟着思路来，非常简单理解:   一.基本思想给定一个有序链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;5-&amp;gt;6-&amp;gt;7-&amp;gt;8跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&h=169&f=png&s=54969">
 
 
 
@@ -118,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://www.braydenwong.com/archives/">
+  <link rel="canonical" href="http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/">
 
 
 
 
 
-  <title>归档 | Brayden Wong</title>
+  <title>跳跃表(SkipList) | Brayden Wong</title>
   
 
 
@@ -143,7 +153,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -269,217 +279,266 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">跳跃表(SkipList)</h1>
         
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-23T09:25:12+08:00">
+                2020-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 5 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/23/跳跃表-SkipList/" itemprop="url">
-              
-                <span itemprop="name">跳跃表(SkipList)</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-07-23T09:25:12+08:00" content="2020-07-23">
-          07-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/07/22/2020重新营业/" itemprop="url">
-              
-                <span itemprop="name">2020重新营业啦!</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-07-22T18:59:04+08:00" content="2020-07-22">
-          07-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/23/跳跃表-SkipList/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/跳跃表-SkipList/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
+             <span id="/2020/07/23/跳跃表-SkipList/" class="leancloud_visitors" data-flag-title="跳跃表(SkipList)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/29/oauth2/" itemprop="url">
-              
-                <span itemprop="name">oauth2</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-29T22:43:22+08:00" content="2018-11-29">
-          11-29
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/28/解决eclipse使用lombok插件问题-最正确的解决方式！/" itemprop="url">
-              
-                <span itemprop="name">解决eclipse使用lombok插件问题,最正确的解决方式！</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-28T20:21:24+08:00" content="2018-11-28">
-          11-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/26/oxygen版本jsp文件BUG问题/" itemprop="url">
-              
-                <span itemprop="name">oxygen版本jsp文件BUG问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-26T15:24:11+08:00" content="2018-11-26">
-          11-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <p>跳跃表是一种基于有序链表的拓展，简称跳表。<br>下面正式开始了哦，跟着思路来，非常简单理解:  </p>
+<h2 id="一-基本思想"><a href="#一-基本思想" class="headerlink" title="一.基本思想"></a>一.基本思想</h2><p>给定一个有序链表：<br><code>1-&gt;2-&gt;3-&gt;5-&gt;6-&gt;7-&gt;8</code><br>跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。<br><a id="more"></a>上面的有序链表，把奇数作为关键节点提取出来：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&amp;h=169&amp;f=png&amp;s=54969" alt=""><br>现在要插入一个值为4的节点，传统的做法是逐一比较，现在只需要比较关键节点，3，5，7。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379356d9486b7d?w=838&amp;h=248&amp;f=png&amp;s=79113" alt=""><br>确定了它在3和5之间的话就回原链表查找，迅速定位到对应的位置插入。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793595ac98526?w=777&amp;h=463&amp;f=png&amp;s=136689" alt=""><br>上面的过程体现了跳表另外一个思想：以空间换时间。在数据量特别大的时候效果非常明显。</p>
+<h2 id="二-进一步优化"><a href="#二-进一步优化" class="headerlink" title="二.进一步优化"></a>二.进一步优化</h2><p>上面只是介绍了基本思想，其实还可以继续优化，看到这别担心，难度不会增加，也非常好理解:<br><br>既然上面提取了一层节点作为索引，那是不是也可以进一步提取？<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379379018839b5?w=808&amp;h=277&amp;f=png&amp;s=72105" alt=""><br>有了2级索引后，插入的节点可以先和2级索引比较，确定大体范围;然后再和1级索引比较;最后再回到原链表，找到并插入对应的位置。<br><br>节点多的时候还可以进一步提取，保证每一层是上一层节点的一半。提取的极限是同一层只有两个节点的时候，因为一个节点比较没有意义。<br><br>到这里，多层链表结构就提取完了，这就是跳跃表。</p>
+<h2 id="三-其他问题"><a href="#三-其他问题" class="headerlink" title="三.其他问题"></a>三.其他问题</h2><p>当大量新节点通过逐层比较插入到链表中后，上层节点就会显得不够用，这就需要从新节点中“提拔”一部分节点到上一层，问题就是“提拔”谁呢(如何选择索引)？<br><br>跳表设计者采用了“抛硬币”的方法，随机决定新节点是否提拔。因为跳表的添加和删除的节点是不可预测的，很难用算法保证跳表的索引分布始终均匀。虽然抛硬币的方式不能保证绝对均匀，但大体上是趋于均匀的。<br><br>比如说，9插入到链表后，开始分析：<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793b99b302678?w=751&amp;h=289&amp;f=png&amp;s=69407" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793c1596233fc?w=790&amp;h=275&amp;f=png&amp;s=97341" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793c4dedf858f?w=834&amp;h=294&amp;f=png&amp;s=95833" alt=""><br>跳跃表插入操作的时间复杂度是O（logN），而这种数据结构所占空间是2N，既空间复杂度是 O（N）。</p>
+<h2 id="四-删除的情况"><a href="#四-删除的情况" class="headerlink" title="四.删除的情况"></a>四.删除的情况</h2><p>删除的时候只要在索引层找到要删除的节点，然后删除每一层相同的节点即可。如果某一层删到只剩下一个，那么整层都可以删掉。比如删除5:<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793ca5b75c29c?w=858&amp;h=472&amp;f=png&amp;s=129574" alt=""><br>跳跃表删除操作的时间复杂度是O（logN）。</p>
+<h2 id="五-跳跃表和二叉查找树的对比"><a href="#五-跳跃表和二叉查找树的对比" class="headerlink" title="五.跳跃表和二叉查找树的对比"></a>五.跳跃表和二叉查找树的对比</h2><p>跳表维持结构平衡的成本较低，完全靠随机。二叉查找树在多次插入和删除后需要重新保持自平衡。</p>
+<h2 id="六-应用"><a href="#六-应用" class="headerlink" title="六.应用"></a>六.应用</h2><p>Redis的五种数据类型之一Sorted-set(zset)这种有序集合，正是对于跳跃表的改进和应用。<br>还有Java中的ConcurrentSkipListMap和ConcurrentSkipListSet内部都是用跳表的数据结构。</p>
+
+      
     </div>
+    
+    
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:18px;">--------------本文结束,感谢您的阅读--------------</div>
+    
+</div>
+
+  
+</div>
+
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/wx_scan_code.png" alt="Brayden Wong wechat" style="width: 200px; max-width: 100%;">
+    <div><br>如有任何问题欢迎加微信与我联系</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx_pay.jpg" alt="Brayden Wong 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.JPG" alt="Brayden Wong 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+      <ul class="post-copyright">
+         <li class="post-copyright-link">
+          <strong>本文作者：</strong>
+          <a href="/" title="欢迎访问 Brayden Wong 的个人博客">Brayden Wong</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文标题：</strong>
+          <a href="http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/" title="跳跃表(SkipList)">跳跃表(SkipList)</a>
+        </li>
+
+        <li class="post-copyright-link">
+          <strong>本文链接：</strong>
+          <a href="http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/" title="跳跃表(SkipList)">http://www.braydenwong.com/2020/07/23/跳跃表-SkipList/</a>
+        </li>
+
+        <li class="post-copyright-license">
+          有问题或建议欢迎与我联系，转载或引用请标明出处，感激不尽！
+        </li>
+      </ul>
+    
+  </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/22/2020重新营业/" rel="next" title="2020重新营业啦!">
+                <i class="fa fa-chevron-left"></i> 2020重新营业啦!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -487,6 +546,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -507,8 +573,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -613,6 +688,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-基本思想"><span class="nav-number">1.</span> <span class="nav-text">一.基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-进一步优化"><span class="nav-number">2.</span> <span class="nav-text">二.进一步优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-其他问题"><span class="nav-number">3.</span> <span class="nav-text">三.其他问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-删除的情况"><span class="nav-number">4.</span> <span class="nav-text">四.删除的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五-跳跃表和二叉查找树的对比"><span class="nav-number">5.</span> <span class="nav-text">五.跳跃表和二叉查找树的对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六-应用"><span class="nav-number">6.</span> <span class="nav-text">六.应用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -775,6 +866,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
