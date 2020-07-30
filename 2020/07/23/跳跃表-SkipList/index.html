@@ -86,19 +86,19 @@
 <meta property="og:site_name" content="Brayden Wong">
 <meta property="og:description" content="跳跃表是一种基于有序链表的拓展，简称跳表。下面正式开始了哦，跟着思路来，非常简单理解:   一.基本思想给定一个有序链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;5-&amp;gt;6-&amp;gt;7-&amp;gt;8跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&h=169&f=png&s=54969">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379356d9486b7d?w=838&h=248&f=png&s=79113">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793595ac98526?w=777&h=463&f=png&s=136689">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379379018839b5?w=808&h=277&f=png&s=72105">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793b99b302678?w=751&h=289&f=png&s=69407">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793c1596233fc?w=790&h=275&f=png&s=97341">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793c4dedf858f?w=834&h=294&f=png&s=95833">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173793ca5b75c29c?w=858&h=472&f=png&s=129574">
-<meta property="og:updated_time" content="2020-07-23T01:32:32.832Z">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/8593a89f7a6c25f0ac0428fe4a4dd106/image.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/9ae0c5003c90bd38b4e11851c28fe774/image2.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/8d54c14d1919db2a3c86c95821a1e877/image3.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/842afeb45f837e32099c3f339094346c/image4.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/cbff69aecd59fc8577187b23a85bd9ad/image5.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/26f9a49d913d16c037d28fde4c6a18eb/image6.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/c2f296adf6e6efe64e13e604bf8e46c8/image7.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/e651952d7702385abda23c269f1b4579/image8.png">
+<meta property="og:updated_time" content="2020-07-30T01:11:21.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跳跃表(SkipList)">
 <meta name="twitter:description" content="跳跃表是一种基于有序链表的拓展，简称跳表。下面正式开始了哦，跟着思路来，非常简单理解:   一.基本思想给定一个有序链表：1-&amp;gt;2-&amp;gt;3-&amp;gt;5-&amp;gt;6-&amp;gt;7-&amp;gt;8跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&h=169&f=png&s=54969">
+<meta name="twitter:image" content="https://res.insta360.com/static/assets/storage/20200730/8593a89f7a6c25f0ac0428fe4a4dd106/image.png">
 
 
 
@@ -405,12 +405,12 @@
 
       
         <p>跳跃表是一种基于有序链表的拓展，简称跳表。<br>下面正式开始了哦，跟着思路来，非常简单理解:  </p>
-<h2 id="一-基本思想"><a href="#一-基本思想" class="headerlink" title="一.基本思想"></a>一.基本思想</h2><p>给定一个有序链表：<br><code>1-&gt;2-&gt;3-&gt;5-&gt;6-&gt;7-&gt;8</code><br>跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。<br><a id="more"></a>上面的有序链表，把奇数作为关键节点提取出来：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379352384e01f9?w=790&amp;h=169&amp;f=png&amp;s=54969" alt=""><br>现在要插入一个值为4的节点，传统的做法是逐一比较，现在只需要比较关键节点，3，5，7。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379356d9486b7d?w=838&amp;h=248&amp;f=png&amp;s=79113" alt=""><br>确定了它在3和5之间的话就回原链表查找，迅速定位到对应的位置插入。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793595ac98526?w=777&amp;h=463&amp;f=png&amp;s=136689" alt=""><br>上面的过程体现了跳表另外一个思想：以空间换时间。在数据量特别大的时候效果非常明显。</p>
-<h2 id="二-进一步优化"><a href="#二-进一步优化" class="headerlink" title="二.进一步优化"></a>二.进一步优化</h2><p>上面只是介绍了基本思想，其实还可以继续优化，看到这别担心，难度不会增加，也非常好理解:<br><br>既然上面提取了一层节点作为索引，那是不是也可以进一步提取？<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379379018839b5?w=808&amp;h=277&amp;f=png&amp;s=72105" alt=""><br>有了2级索引后，插入的节点可以先和2级索引比较，确定大体范围;然后再和1级索引比较;最后再回到原链表，找到并插入对应的位置。<br><br>节点多的时候还可以进一步提取，保证每一层是上一层节点的一半。提取的极限是同一层只有两个节点的时候，因为一个节点比较没有意义。<br><br>到这里，多层链表结构就提取完了，这就是跳跃表。</p>
-<h2 id="三-其他问题"><a href="#三-其他问题" class="headerlink" title="三.其他问题"></a>三.其他问题</h2><p>当大量新节点通过逐层比较插入到链表中后，上层节点就会显得不够用，这就需要从新节点中“提拔”一部分节点到上一层，问题就是“提拔”谁呢(如何选择索引)？<br><br>跳表设计者采用了“抛硬币”的方法，随机决定新节点是否提拔。因为跳表的添加和删除的节点是不可预测的，很难用算法保证跳表的索引分布始终均匀。虽然抛硬币的方式不能保证绝对均匀，但大体上是趋于均匀的。<br><br>比如说，9插入到链表后，开始分析：<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793b99b302678?w=751&amp;h=289&amp;f=png&amp;s=69407" alt=""></p>
-<p><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793c1596233fc?w=790&amp;h=275&amp;f=png&amp;s=97341" alt=""></p>
-<p><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793c4dedf858f?w=834&amp;h=294&amp;f=png&amp;s=95833" alt=""><br>跳跃表插入操作的时间复杂度是O（logN），而这种数据结构所占空间是2N，既空间复杂度是 O（N）。</p>
-<h2 id="四-删除的情况"><a href="#四-删除的情况" class="headerlink" title="四.删除的情况"></a>四.删除的情况</h2><p>删除的时候只要在索引层找到要删除的节点，然后删除每一层相同的节点即可。如果某一层删到只剩下一个，那么整层都可以删掉。比如删除5:<br><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173793ca5b75c29c?w=858&amp;h=472&amp;f=png&amp;s=129574" alt=""><br>跳跃表删除操作的时间复杂度是O（logN）。</p>
+<h2 id="一-基本思想"><a href="#一-基本思想" class="headerlink" title="一.基本思想"></a>一.基本思想</h2><p>给定一个有序链表：<br><code>1-&gt;2-&gt;3-&gt;5-&gt;6-&gt;7-&gt;8</code><br>跳表的思想就是利用了类似索引的思想，提取出链表中的部分关键节点，然后再用二分查找。<br><a id="more"></a>上面的有序链表，把奇数作为关键节点提取出来：<br><img src="https://res.insta360.com/static/assets/storage/20200730/8593a89f7a6c25f0ac0428fe4a4dd106/image.png" alt=""><br>现在要插入一个值为4的节点，传统的做法是逐一比较，现在只需要比较关键节点，3，5，7。<br><img src="https://res.insta360.com/static/assets/storage/20200730/9ae0c5003c90bd38b4e11851c28fe774/image2.png" alt=""><br>确定了它在3和5之间的话就回原链表查找，迅速定位到对应的位置插入。<br><img src="https://res.insta360.com/static/assets/storage/20200730/8d54c14d1919db2a3c86c95821a1e877/image3.png" alt=""><br>上面的过程体现了跳表另外一个思想：以空间换时间。在数据量特别大的时候效果非常明显。</p>
+<h2 id="二-进一步优化"><a href="#二-进一步优化" class="headerlink" title="二.进一步优化"></a>二.进一步优化</h2><p>上面只是介绍了基本思想，其实还可以继续优化，看到这别担心，难度不会增加，也非常好理解:<br><br>既然上面提取了一层节点作为索引，那是不是也可以进一步提取？<br><br><img src="https://res.insta360.com/static/assets/storage/20200730/842afeb45f837e32099c3f339094346c/image4.png" alt=""><br>有了2级索引后，插入的节点可以先和2级索引比较，确定大体范围;然后再和1级索引比较;最后再回到原链表，找到并插入对应的位置。<br><br>节点多的时候还可以进一步提取，保证每一层是上一层节点的一半。提取的极限是同一层只有两个节点的时候，因为一个节点比较没有意义。<br><br>到这里，多层链表结构就提取完了，这就是跳跃表。</p>
+<h2 id="三-其他问题"><a href="#三-其他问题" class="headerlink" title="三.其他问题"></a>三.其他问题</h2><p>当大量新节点通过逐层比较插入到链表中后，上层节点就会显得不够用，这就需要从新节点中“提拔”一部分节点到上一层，问题就是“提拔”谁呢(如何选择索引)？<br><br>跳表设计者采用了“抛硬币”的方法，随机决定新节点是否提拔。因为跳表的添加和删除的节点是不可预测的，很难用算法保证跳表的索引分布始终均匀。虽然抛硬币的方式不能保证绝对均匀，但大体上是趋于均匀的。<br><br>比如说，9插入到链表后，开始分析：<br><br><img src="https://res.insta360.com/static/assets/storage/20200730/cbff69aecd59fc8577187b23a85bd9ad/image5.png" alt=""></p>
+<p><img src="https://res.insta360.com/static/assets/storage/20200730/26f9a49d913d16c037d28fde4c6a18eb/image6.png" alt=""></p>
+<p><img src="https://res.insta360.com/static/assets/storage/20200730/c2f296adf6e6efe64e13e604bf8e46c8/image7.png" alt=""><br>跳跃表插入操作的时间复杂度是O（logN），而这种数据结构所占空间是2N，既空间复杂度是 O（N）。</p>
+<h2 id="四-删除的情况"><a href="#四-删除的情况" class="headerlink" title="四.删除的情况"></a>四.删除的情况</h2><p>删除的时候只要在索引层找到要删除的节点，然后删除每一层相同的节点即可。如果某一层删到只剩下一个，那么整层都可以删掉。比如删除5:<br><br><img src="https://res.insta360.com/static/assets/storage/20200730/e651952d7702385abda23c269f1b4579/image8.png" alt=""><br>跳跃表删除操作的时间复杂度是O（logN）。</p>
 <h2 id="五-跳跃表和二叉查找树的对比"><a href="#五-跳跃表和二叉查找树的对比" class="headerlink" title="五.跳跃表和二叉查找树的对比"></a>五.跳跃表和二叉查找树的对比</h2><p>跳表维持结构平衡的成本较低，完全靠随机。二叉查找树在多次插入和删除后需要重新保持自平衡。</p>
 <h2 id="六-应用"><a href="#六-应用" class="headerlink" title="六.应用"></a>六.应用</h2><p>Redis的五种数据类型之一Sorted-set(zset)这种有序集合，正是对于跳跃表的改进和应用。<br>还有Java中的ConcurrentSkipListMap和ConcurrentSkipListSet内部都是用跳表的数据结构。</p>
 
@@ -520,7 +520,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/07/23/B-树/" rel="prev" title="B+树">
+              <a href="/2020/07/23/B+树/" rel="prev" title="B+树">
                 B+树 <i class="fa fa-chevron-right"></i>
               </a>
             

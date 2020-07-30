@@ -82,31 +82,31 @@
 <meta name="description" content="为了降低难度方便理解，概念先不用管，后面会总结，直接看例子：下图是B+树的结构，特点是：节点之间含有重复数据，叶子节点还用指针连在一起。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="B+树">
-<meta property="og:url" content="http://www.braydenwong.com/2020/07/23/B-树/index.html">
+<meta property="og:url" content="http://www.braydenwong.com/2020/07/23/B+树/index.html">
 <meta property="og:site_name" content="Brayden Wong">
 <meta property="og:description" content="为了降低难度方便理解，概念先不用管，后面会总结，直接看例子：下图是B+树的结构，特点是：节点之间含有重复数据，叶子节点还用指针连在一起。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737978755993637?w=840&h=327&f=png&s=84820">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737978db8c08923?w=824&h=311&f=png&s=81372">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379794d77e3033?w=816&h=292&f=png&s=119123">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173797988971e11e?w=760&h=449&f=png&s=141153">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379840b6ef084a?w=794&h=401&f=png&s=125655">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737987058608ef3?w=743&h=336&f=png&s=99298">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379871cd497e22?w=750&h=341&f=png&s=85192">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737987343166460?w=835&h=372&f=png&s=87353">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379887c42a80b6?w=803&h=447&f=png&s=91905">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379889590852da?w=765&h=384&f=png&s=78982">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737988ab4e5a451?w=740&h=387&f=png&s=79634">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/17379893acfaccde?w=776&h=353&f=png&s=81954">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737989693f01aa4?w=759&h=367&f=png&s=88102">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737989f53a2e72a?w=753&h=389&f=png&s=93974">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173798a0f082523d?w=757&h=341&f=png&s=89007">
-<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/7/23/173798a26f9c30c4?w=759&h=355&f=png&s=93121">
-<meta property="og:updated_time" content="2020-07-23T02:51:10.089Z">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/7b271bf2e8827f7c37a83d2e5ecec0af/image.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/8f14f72ad5ec4504e7ffd33f06884a86/image2.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/69a789d1bd26a49be6aa85bb64b5bdd3/image3.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/060a0816a4154cd0765b75014d6467cb/image4.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/b42034cefca59d336c1f2de560e5a725/image5.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/6f21da7dd75490f9f57f6383675704f8/image6.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/3c1e3824925624508c1e5ce76c66b2f1/image7.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/7de1bb1d6cc99f3829128290eed4af84/image8.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/1bb19eaf93beade2f63ba333beb502e8/image9.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/e3999a560dff0351d6b03883ce3c50d7/image10.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/434aa7ca1631473229b982cc8f09367d/image11.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/b45d2288e4408c53d9d0c0221e1a6b89/image12.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/5698b60486a4515e3725b2f3545666e3/image13.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/a0c7d07fe2f04dcf61f7c1d9148e9877/image14.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/da60afaee5d4dea03f743ab6cb016927/image15.png">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200730/d93f636d388527d948252e6bc09e9087/image16.png">
+<meta property="og:updated_time" content="2020-07-30T01:09:55.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="B+树">
 <meta name="twitter:description" content="为了降低难度方便理解，概念先不用管，后面会总结，直接看例子：下图是B+树的结构，特点是：节点之间含有重复数据，叶子节点还用指针连在一起。">
-<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/7/23/1737978755993637?w=840&h=327&f=png&s=84820">
+<meta name="twitter:image" content="https://res.insta360.com/static/assets/storage/20200730/7b271bf2e8827f7c37a83d2e5ecec0af/image.png">
 
 
 
@@ -136,7 +136,7 @@
 
 
 
-  <link rel="canonical" href="http://www.braydenwong.com/2020/07/23/B-树/">
+  <link rel="canonical" href="http://www.braydenwong.com/2020/07/23/B+树/">
 
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2020/07/23/B-树/">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2020/07/23/B+树/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Brayden Wong">
@@ -372,8 +372,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/23/B-树/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/B-树/" itemprop="commentCount"></span>
+                <a href="/2020/07/23/B+树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/23/B+树/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -381,7 +381,7 @@
 
           
           
-             <span id="/2020/07/23/B-树/" class="leancloud_visitors" data-flag-title="B+树">
+             <span id="/2020/07/23/B+树/" class="leancloud_visitors" data-flag-title="B+树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,9 +412,9 @@
       
 
       
-        <p>为了降低难度方便理解，概念先不用管，后面会总结，直接看例子：<br><br>下图是B+树的结构，特点是：节点之间含有重复数据，叶子节点还用指针连在一起。<a id="more"></a><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737978755993637?w=840&amp;h=327&amp;f=png&amp;s=84820" alt=""><br>其次，每个父节点的元素都出现在子节点中，是子节点的最大或最小元素。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737978db8c08923?w=824&amp;h=311&amp;f=png&amp;s=81372" alt=""><br>由于父节点的元素都出现在子节点，因此所有叶子节点包含了全量元素信息，并且每个叶子节点都带有指向下一节点的指针，形成了一个有序链表。<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379794d77e3033?w=816&amp;h=292&amp;f=png&amp;s=119123" alt=""><br>卫星数据：指的是索引元素所指向的数据记录，比如数据库中的某一行。<br><br>在B-树中，无论中间节点还是叶子节点都带有卫星数据：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173797988971e11e?w=760&amp;h=449&amp;f=png&amp;s=141153" alt=""><br>而在B+树中，只有叶子节点带有卫星数据，其余中间节点仅仅是索引，没有任何数据关联：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379840b6ef084a?w=794&amp;h=401&amp;f=png&amp;s=125655" alt=""><br>补充一个知识点：在数据库的聚集索引（Clustered Index）中，叶子节点直接包含卫星数据。在非聚集索引（NonClustered Index）中，叶子节点带有指向卫星数据的指针。<br><br>B+树设计成这样的好处主要体现在查询性能上，分两种情况讨论：<br></p>
-<h3 id="1-单行查询"><a href="#1-单行查询" class="headerlink" title="1.单行查询"></a>1.单行查询</h3><p>&emsp;&emsp;单行查询的时候，B+树会自顶向下逐层查找节点，最终找到匹配的叶子节点。比如我们要查找的是元素3：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737987058608ef3?w=743&amp;h=336&amp;f=png&amp;s=99298" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379871cd497e22?w=750&amp;h=341&amp;f=png&amp;s=85192" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737987343166460?w=835&amp;h=372&amp;f=png&amp;s=87353" alt=""><br>&emsp;&emsp;流程看起来和B-树差不多，但是有两点不同。<br><br>&emsp;&emsp;首先B+树的中间节点没有卫星数据，所以同样大小的磁盘页可以容纳更多的节点元素。这意味着，数据量相同的情况下，B+树的结构比B-树更加“矮胖”（可以理解为树的高度降低了，想象下矮胖的雪人和圣诞树），因此查询时IO次数也更少。<br><br>&emsp;&emsp;其次，B+树的查询必须最终查找到叶子节点，而B-树只要找到匹配元素即可，无论元素处于中间节点还是叶子节点。因此，可以说B-树的查找性能并不稳定（最好情况是查根节点，最坏情况是查到叶子节点）。而B+树的每一次查找都是稳定的。</p>
-<h3 id="2-范围查询"><a href="#2-范围查询" class="headerlink" title="2.范围查询"></a>2.范围查询</h3><p>B-树只能依靠繁琐的中序遍历。比如我们要查询范围为3到11元素：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379887c42a80b6?w=803&amp;h=447&amp;f=png&amp;s=91905" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379889590852da?w=765&amp;h=384&amp;f=png&amp;s=78982" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737988ab4e5a451?w=740&amp;h=387&amp;f=png&amp;s=79634" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/17379893acfaccde?w=776&amp;h=353&amp;f=png&amp;s=81954" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737989693f01aa4?w=759&amp;h=367&amp;f=png&amp;s=88102" alt=""><br>而B+树的范围查询，则要简单得多，只需要在链表上做遍历即可：<br><img src="https://user-gold-cdn.xitu.io/2020/7/23/1737989f53a2e72a?w=753&amp;h=389&amp;f=png&amp;s=93974" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173798a0f082523d?w=757&amp;h=341&amp;f=png&amp;s=89007" alt=""><br><img src="https://user-gold-cdn.xitu.io/2020/7/23/173798a26f9c30c4?w=759&amp;h=355&amp;f=png&amp;s=93121" alt=""><br>是不是简单很多？<br><br>至于B+树的插入和删除，过程与B-树大同小异，不再详解。<br><br>最后还是要说下B+树特征的专业偏抽象描述：<br><br>1.有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。<br><br>2.所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接。<br><br>3.所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素。</p>
+        <p>为了降低难度方便理解，概念先不用管，后面会总结，直接看例子：<br><br>下图是B+树的结构，特点是：节点之间含有重复数据，叶子节点还用指针连在一起。<a id="more"></a><br><img src="https://res.insta360.com/static/assets/storage/20200730/7b271bf2e8827f7c37a83d2e5ecec0af/image.png" alt=""><br>其次，每个父节点的元素都出现在子节点中，是子节点的最大或最小元素。<br><img src="https://res.insta360.com/static/assets/storage/20200730/8f14f72ad5ec4504e7ffd33f06884a86/image2.png" alt=""><br>由于父节点的元素都出现在子节点，因此所有叶子节点包含了全量元素信息，并且每个叶子节点都带有指向下一节点的指针，形成了一个有序链表。<br><img src="https://res.insta360.com/static/assets/storage/20200730/69a789d1bd26a49be6aa85bb64b5bdd3/image3.png" alt=""><br>卫星数据：指的是索引元素所指向的数据记录，比如数据库中的某一行。<br><br>在B-树中，无论中间节点还是叶子节点都带有卫星数据：<br><img src="https://res.insta360.com/static/assets/storage/20200730/060a0816a4154cd0765b75014d6467cb/image4.png" alt=""><br>而在B+树中，只有叶子节点带有卫星数据，其余中间节点仅仅是索引，没有任何数据关联：<br><img src="https://res.insta360.com/static/assets/storage/20200730/b42034cefca59d336c1f2de560e5a725/image5.png" alt=""><br>补充一个知识点：在数据库的聚集索引（Clustered Index）中，叶子节点直接包含卫星数据。在非聚集索引（NonClustered Index）中，叶子节点带有指向卫星数据的指针。<br><br>B+树设计成这样的好处主要体现在查询性能上，分两种情况讨论：<br></p>
+<h3 id="1-单行查询"><a href="#1-单行查询" class="headerlink" title="1.单行查询"></a>1.单行查询</h3><p>&emsp;&emsp;单行查询的时候，B+树会自顶向下逐层查找节点，最终找到匹配的叶子节点。比如我们要查找的是元素3：<br><img src="https://res.insta360.com/static/assets/storage/20200730/6f21da7dd75490f9f57f6383675704f8/image6.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/3c1e3824925624508c1e5ce76c66b2f1/image7.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/7de1bb1d6cc99f3829128290eed4af84/image8.png" alt=""><br>&emsp;&emsp;流程看起来和B-树差不多，但是有两点不同。<br><br>&emsp;&emsp;首先B+树的中间节点没有卫星数据，所以同样大小的磁盘页可以容纳更多的节点元素。这意味着，数据量相同的情况下，B+树的结构比B-树更加“矮胖”（可以理解为树的高度降低了，想象下矮胖的雪人和圣诞树），因此查询时IO次数也更少。<br><br>&emsp;&emsp;其次，B+树的查询必须最终查找到叶子节点，而B-树只要找到匹配元素即可，无论元素处于中间节点还是叶子节点。因此，可以说B-树的查找性能并不稳定（最好情况是查根节点，最坏情况是查到叶子节点）。而B+树的每一次查找都是稳定的。</p>
+<h3 id="2-范围查询"><a href="#2-范围查询" class="headerlink" title="2.范围查询"></a>2.范围查询</h3><p>B-树只能依靠繁琐的中序遍历。比如我们要查询范围为3到11元素：<br><img src="https://res.insta360.com/static/assets/storage/20200730/1bb19eaf93beade2f63ba333beb502e8/image9.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/e3999a560dff0351d6b03883ce3c50d7/image10.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/434aa7ca1631473229b982cc8f09367d/image11.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/b45d2288e4408c53d9d0c0221e1a6b89/image12.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/5698b60486a4515e3725b2f3545666e3/image13.png" alt=""><br>而B+树的范围查询，则要简单得多，只需要在链表上做遍历即可：<br><img src="https://res.insta360.com/static/assets/storage/20200730/a0c7d07fe2f04dcf61f7c1d9148e9877/image14.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/da60afaee5d4dea03f743ab6cb016927/image15.png" alt=""><br><img src="https://res.insta360.com/static/assets/storage/20200730/d93f636d388527d948252e6bc09e9087/image16.png" alt=""><br>是不是简单很多？<br><br>至于B+树的插入和删除，过程与B-树大同小异，不再详解。<br><br>最后还是要说下B+树特征的专业偏抽象描述：<br><br>1.有k个子树的中间节点包含有k个元素（B树中是k-1个元素），每个元素不保存数据，只用来索引，所有数据都保存在叶子节点。<br><br>2.所有的叶子结点中包含了全部元素的信息，及指向含这些元素记录的指针，且叶子结点本身依关键字的大小自小而大顺序链接。<br><br>3.所有的中间节点元素都同时存在于子节点，在子节点元素中是最大（或最小）元素。</p>
 <p>最后的最后，总结下B+树的优势：<br><br>1.单一节点存储更多的元素，使得查询的IO次数更少。<br><br>2.所有查询都要查找到叶子节点，查询性能稳定。<br><br>3.所有叶子节点形成有序链表，便于范围查询。<br></p>
 <p>你的Q&amp;A：<br><br><strong>1.既然B+树这么好，还要B-树何用？？？（微笑脸）</strong><br><br>B-树的好处是，虽然查询性能不稳定，但平均的查询速度快一些（不用每次都查找到叶子节点为止）<br><br><strong>2.如何理解B+树“查询性能稳定”？</strong><br><br>B+树的查询每次都查到叶子节点，所以IO次数稳定。试想一个数据库的查询，有时候执行10毫秒，有时候执行100毫秒，肯定是不太合适的。还不如每次都执行30毫秒。<br><br><strong>3.看起来和跳跃表有点像？</strong><br><br>确实有点像呢，不过跳跃表的层数比B+树更多。可以比较下我另一篇跳跃表的文章。<br><br><strong>4.这算不算是以空间换时间呢？</strong><br><br>的确是以空间换时间。父节点元素在子节点重复出现，增加了少量空间，换来的是范围查询的便利。<br><br><strong>5.HashMap为什么不把红黑树改成b树？</strong><br><br>因为二叉查找树的查找效率是最高的，如果内存能装下完整的树，最好使用二叉查找树，b树是退而求其次的方式。<br><br><br><br><br><br><br><br><br><br></p>
 <p>部分内容参考自公众号：程序员小灰</p>
@@ -491,12 +491,12 @@
 
         <li class="post-copyright-link">
           <strong>本文标题：</strong>
-          <a href="http://www.braydenwong.com/2020/07/23/B-树/" title="B+树">B+树</a>
+          <a href="http://www.braydenwong.com/2020/07/23/B+树/" title="B+树">B+树</a>
         </li>
 
         <li class="post-copyright-link">
           <strong>本文链接：</strong>
-          <a href="http://www.braydenwong.com/2020/07/23/B-树/" title="B+树">http://www.braydenwong.com/2020/07/23/B-树/</a>
+          <a href="http://www.braydenwong.com/2020/07/23/B+树/" title="B+树">http://www.braydenwong.com/2020/07/23/B+树/</a>
         </li>
 
         <li class="post-copyright-license">
