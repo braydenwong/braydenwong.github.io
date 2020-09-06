@@ -460,6 +460,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2020/09/06/垃圾回收算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Brayden Wong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload/IMG_0729.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Brayden Wong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/06/垃圾回收算法/" itemprop="url">垃圾回收算法</a></h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T15:18:28+08:00">
+                2020-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/06/垃圾回收算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/06/垃圾回收算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/06/垃圾回收算法/" class="leancloud_visitors" data-flag-title="垃圾回收算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先，需要先搞清楚两个问题。<br>1.什么是垃圾？<br>垃圾是指在运行程序中没有任何指针指向的对象，这个对象就是需要被回收的垃圾。<br>2.为什么要进行垃圾收集？<br>如果不即使对内存中的垃圾进行清理，那么垃圾对象所占的内存空间会保留到应用程序结束，甚至可能导致内存溢出。<br>其次，垃圾收集是分阶段的，分为标记阶段和清除阶段。<br>标记阶段作用是区分出内存中哪些是存活对象，哪些是已经死亡的对象，一般有两种方式：引用计数算法和可达性分析算法。<br>清除阶段是当成功区分出内存中存活对象和死亡对象后，GC接下来的任务就是执行垃圾回收，释放掉无用对象所占用的内存空间，以便又足够的可用内存空间为新对象分配内存。目前JVM中比较常见的三种垃圾收集算法是标记-清除算法、复制算法、标记-压缩算法。</p>
+<h2 id="1-标记阶段-引用计数算法"><a href="#1-标记阶段-引用计数算法" class="headerlink" title="1.标记阶段:引用计数算法"></a>1.标记阶段:引用计数算法</h2><h3 id="1-1概念"><a href="#1-1概念" class="headerlink" title="1.1概念"></a>1.1概念</h3><p>每个对象保存一个整型的引用计数器属性，用于记录对象被引用的情况。<br>对于一个对象A，只要有任何一个对象引用了A，则A的引用计数器就加1；当引用失效时，引用计数器就减1.只要对象A的引用计数器的值为0.即表示对象A不可能再被使用，可进行回收。</p>
+<h3 id="1-2优点"><a href="#1-2优点" class="headerlink" title="1.2优点"></a>1.2优点</h3><p>实现简单，垃圾对象便于辨识；判定效率高，回收没有延迟性。</p>
+<h3 id="1-3缺点"><a href="#1-3缺点" class="headerlink" title="1.3缺点"></a>1.3缺点</h3><p>它需要单独的字段存储计数器，这样的做法增加了存储空间的开销。<br>每次复制都需要更新计数器，伴随着加法和减法操作，这增加了时间开销。<br>引用计数器有一个严重的问题，即无法处理循环引用的情况。见下图：<br><img src="https://res.insta360.com/static/assets/storage/20200906/42b255c8e0a84ff088d04eb6f6325b4b/1.image" alt=""><br>其中rc为引用计数器。<br>正因为这个致命缺陷，导致在Java的垃圾回收器中没有使用这类算法。但是在Python的垃圾回收中就使用了这个算法。<br>Python如何解决循环引用？<br>1.手动解除<br>2.使用弱引用weakref，weakref是Python的标准库。</p>
+<h2 id="2-标记阶段-可达性分析算法"><a href="#2-标记阶段-可达性分析算法" class="headerlink" title="2.标记阶段:可达性分析算法"></a>2.标记阶段:可达性分析算法</h2><h3 id="2-1概念"><a href="#2-1概念" class="headerlink" title="2.1概念"></a>2.1概念</h3><p>通过GC Roots的对象为起点，向下搜索，能到达的对象为不可回收对象，不能到达的对象为需要回收的对象。Java中就是通过可达性分析算法来判定对象是否存活的。这种算法就是Java、C#选择的。也叫根搜索算法、追踪行垃圾收集。<br>GC Roots的对象<br>1）、方法区中常量引用的对象；<br>2）、方法区中类静态属性（static修饰）引用的对象；<br>3）、虚拟机栈（本地变量表）中引用的对象（正在被使用）；<br>4）、本地方法栈（native修饰方法）中引用的对象；<br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a95175b152034e4582f31df2a805de17~tplv-k3u1fbpfcp-zoom-1.image" alt=""><br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/91da0f2a711f40b0882d2cdc1d541f6f~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h3 id="2-2优点"><a href="#2-2优点" class="headerlink" title="2.2优点"></a>2.2优点</h3><p>解决了在引用计数算法中循环引用的问题，防止内存泄漏的发生。Java和C#就是用这种算法。</p>
+<h3 id="2-3缺点"><a href="#2-3缺点" class="headerlink" title="2.3缺点"></a>2.3缺点</h3><p>分析工作必须在一个保障一致性的快照中进行。这点不满足的分析结果的准确性就无法保证。这点也是导致GC进行时必须“Stop The World”的一个重要原因。</p>
+<h2 id="3-清除阶段-标记-清除算法"><a href="#3-清除阶段-标记-清除算法" class="headerlink" title="3.清除阶段:标记-清除算法"></a>3.清除阶段:标记-清除算法</h2><p>当堆中的有效内存空间被耗尽的时候，就会停止整个程序（STW），然后进行两项工作，第一项是标记，第二项则是清除。<br>需要注意的是这里所谓的清除并不是真的置空，而是把需要清除的对象地址保存在空闲的地址列表里。下次又新对象需要加载时，判断垃圾的位置空间是否够，如果够，就存放。<br>标记：从引用根节点开始便利，标记所有被引用的对象。一般是在对象的对象头中记录为可达对象。<br>清除：对堆内存从头到尾进行线性的遍历，如果发现某个对象在对象头中没有标记为可达对象，则将其回收。<br><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/01b127d77ccd467580e88e4fa2fff4c6~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h3 id="3-1缺点"><a href="#3-1缺点" class="headerlink" title="3.1缺点"></a>3.1缺点</h3><p>1.在进行GC的时候，需要停止整个应用程序，导致用户体验差。<br>2.这种方式清理出来的空闲内存是不连续的，产生内存碎片。需要维护一个空闲列表。</p>
+<h2 id="4-清除阶段-复制算法"><a href="#4-清除阶段-复制算法" class="headerlink" title="4.清除阶段:复制算法"></a>4.清除阶段:复制算法</h2><p>将活着的内存空间分为两块，每次只使用其中一块，在垃圾回收时将正在使用的内存中的存活对象复制到未被使用的内存块中，之后清除正在使用的内存块中的所有对象，交换两个内存的角色，最后完成垃圾回收。<br><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52ff655223b145d0bc1a6a8e10bb57d3~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h3 id="4-1优点"><a href="#4-1优点" class="headerlink" title="4.1优点"></a>4.1优点</h3><p>没有标记和清除过程，实现简单，运行高效。<br>复制过去以后保证空间的连续性，不会出现碎片问题。</p>
+<h3 id="4-2缺点"><a href="#4-2缺点" class="headerlink" title="4.2缺点"></a>4.2缺点</h3><p>需要两倍的内存空间。</p>
+<h2 id="5-清除阶段-标记-压缩算法"><a href="#5-清除阶段-标记-压缩算法" class="headerlink" title="5.清除阶段:标记-压缩算法"></a>5.清除阶段:标记-压缩算法</h2><p>执行过程：第一阶段和标记清除算法一样，从根节点开始标记所有被引用对象。第二阶段将所有的存活对象压缩到内存的一端，按顺序排放。之后清理边界外所有空间。也叫标记-整理算法。<br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9cb775ddda19409d895afcc43a90f90d~tplv-k3u1fbpfcp-zoom-1.image" alt=""><br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe7f976a4ba74351b2f9550fd7c02a09~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h3 id="5-1优点"><a href="#5-1优点" class="headerlink" title="5.1优点"></a>5.1优点</h3><p>解决了标记-清除算法中碎片问题。<br>消除了复制算法中内存减半的高额代价。</p>
+<h3 id="5-2缺点"><a href="#5-2缺点" class="headerlink" title="5.2缺点"></a>5.2缺点</h3><p>效率上低于复制算法<br>移动对象的同时，如果对象被其他对象引用根，则还需要调整引用的地址。</p>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6.总结"></a>6.总结</h2><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/99ee3acf6ce441d9ba887b468e3cb182~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h2 id="7-分代收集算法"><a href="#7-分代收集算法" class="headerlink" title="7.分代收集算法"></a>7.分代收集算法</h2><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/58e9697c3eb54521976e06b86ef6853e~tplv-k3u1fbpfcp-zoom-1.image" alt=""><br><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1185a9205dc340409589be7ad5ec1f17~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h2 id="8-增量收集算法"><a href="#8-增量收集算法" class="headerlink" title="8.增量收集算法"></a>8.增量收集算法</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5a8c30a761b44a3c90db8455b7e4a8ef~tplv-k3u1fbpfcp-zoom-1.image" alt=""><br><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b8c57b95adc4624a66d66c6b85961ed~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+<h2 id="9-分区算法"><a href="#9-分区算法" class="headerlink" title="9.分区算法"></a>9.分区算法</h2><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/14ce167807bf4c3ea2035ab1a9092bcd~tplv-k3u1fbpfcp-zoom-1.image" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+  
+</div>
+
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+       
+     <div>    
+      
+  </div>
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.braydenwong.com/2020/08/04/类的加载过程及注意点/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1551,7 +1741,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1562,7 +1752,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
