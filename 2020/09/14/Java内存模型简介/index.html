@@ -79,18 +79,23 @@
 
 
 
-<meta name="description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta name="description" content="&amp;emsp;&amp;emsp;最近我准备开始写Java并发编程相关系列的文章了，网上的博客五花八门，有些还是错的。所以本人查阅了大量并发编程领域的核心书籍及官方资料，目的就是要保证内容都具有一定“权威性”，想要学习Java多线程的同学可以多多关注下哈～&amp;emsp;&amp;emsp;首先需要区分两个概念：Java内存模型和Java内存结构。前者是和Java并发编程有关，后者是和Java虚拟机的运行时数据区有关，">
 <meta name="keywords" content="多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java内存模型简介">
 <meta property="og:url" content="http://www.braydenwong.com/2020/09/14/Java内存模型简介/index.html">
 <meta property="og:site_name" content="Brayden Wong">
-<meta property="og:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;最近我准备开始写Java并发编程相关系列的文章了，网上的博客五花八门，有些还是错的。所以本人查阅了大量并发编程领域的核心书籍及官方资料，目的就是要保证内容都具有一定“权威性”，想要学习Java多线程的同学可以多多关注下哈～&amp;emsp;&amp;emsp;首先需要区分两个概念：Java内存模型和Java内存结构。前者是和Java并发编程有关，后者是和Java虚拟机的运行时数据区有关，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-14T03:47:23.726Z">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200914/4c6169e621d6ee38a51a5bc146c64c24/1.image">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200914/c69a82d6f841e60e0a1bb7e30caed800/2.image">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200914/3475ce2d25cabe886dad2cbd46ef88d6/3.image">
+<meta property="og:image" content="https://res.insta360.com/static/assets/storage/20200914/8ee45229370dfe6e545433f43ade2f2c/4.image">
+<meta property="og:updated_time" content="2020-09-14T04:14:02.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java内存模型简介">
-<meta name="twitter:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;最近我准备开始写Java并发编程相关系列的文章了，网上的博客五花八门，有些还是错的。所以本人查阅了大量并发编程领域的核心书籍及官方资料，目的就是要保证内容都具有一定“权威性”，想要学习Java多线程的同学可以多多关注下哈～&amp;emsp;&amp;emsp;首先需要区分两个概念：Java内存模型和Java内存结构。前者是和Java并发编程有关，后者是和Java虚拟机的运行时数据区有关，">
+<meta name="twitter:image" content="https://res.insta360.com/static/assets/storage/20200914/4c6169e621d6ee38a51a5bc146c64c24/1.image">
 
 
 
@@ -207,6 +212,16 @@
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
           </a>
         </li>
       
@@ -396,7 +411,13 @@
       
 
       
-        
+        <p>&emsp;&emsp;最近我准备开始写Java并发编程相关系列的文章了，网上的博客五花八门，有些还是错的。所以本人查阅了大量并发编程领域的核心书籍及官方资料，目的就是要保证内容都具有一定“权威性”，想要学习Java多线程的同学可以多多关注下哈～<br>&emsp;&emsp;首先需要区分两个概念：Java内存模型和Java内存结构。前者是和Java并发编程有关，后者是和Java虚拟机的运行时数据区有关，注意不要混淆。Java内存模型简称JMM(Java Memory Model)。<a id="more"></a></p>
+<h2 id="一-为什么需要并发编程"><a href="#一-为什么需要并发编程" class="headerlink" title="一.为什么需要并发编程"></a>一.为什么需要并发编程</h2><p>&emsp;&emsp;上面提到Java内存模型是和Java并发编程有关的，那为什么需要并发编程呢？其实这是现代计算机硬件发展的必然趋势。<br>&emsp;&emsp;1965年，英特尔创始人之一摩尔提出了摩尔定律，内容为：集成电路上可容纳的电晶体（晶体管）数目，约每隔24个月便会增加一倍。经常被引用的“18个月”，其实是英特尔首席执行官大卫豪斯所说的：预计18个月会将芯片的性能提高一倍（即更多的晶体管时其更快）。<br>&emsp;&emsp;简单说，就是每18个月到24个月，我们的计算机性能就能翻倍。按照这种速度，人类的计算能力将会按照指数速度增长，未来我们甚至可以基于超级计算机模拟整个宇宙！<br>&emsp;&emsp;摩尔定律的有效性超过了半个世纪，然而，摩尔定律并不是一种自然法则或物理定律，它只是基于人为观测数据对未来的预测。在2004年，Intel宣布将4GHz芯片推迟到2005年，但是在2004年秋季，Intel宣布彻底取消4GHz计划。<br>&emsp;&emsp;为什么世界顶级的科技巨头要放弃4GHz的研发呢？因为当时的芯片制造工艺已经达到了纳米级别了，也许4GHz的芯片就已经接近理论极限了，再往下发展就显得有些困难。即使从目前的科技水平来看，CPU主频(或者叫时钟频率)的提升已经明显遇到了一些暂时不可逾越的瓶颈。因此摩尔定律在CPU的计算性能上可能已经“失效”。<br>&emsp;&emsp;虽然CPU的性能已经接近止步，长达半个世纪的摩尔定律已经失效，但科学家和工程师依然没有停止不断前进的脚步。从2005年开始，我们已经不再追求单核的计算速度了，而着迷于研究如何将多个独立的计算单元整合到单独的CPU中，也就是我们所说的多核CPU。现在经过多年的发展，我们的CPU已经可以拥有4核心，甚至是8核心。从整体上看，专业服务器的内核总数甚至可以达到几百个。也就是说，因为处理器很难再提高它的主频，取而代之的是，处理器厂商会在一块芯片上放置更多的处理器内核。所有主要的芯片制造商都开始了这种转变，并且我们已经显著地看到机器中处理器数量的增加。非常令人激动，摩尔定律在另外一个侧面又“生效了”。<br>&emsp;&emsp;好了，让我们回归标题。由于程序调度的基本单元是线程，一个单线程应用程序一次只能运行在一个处理器上。在双处理器系统中，一个单线程程序，放弃了其中一半的空闲CPU资源；在拥有100个处理器的系统中，这个单线程程序放弃了99%的资源。所以编写多线程程序就可以同时在多处理器上运行，有效利用空闲的处理器资源，提高吞吐量。<br>&emsp;&emsp;不仅仅是多核CPU，在单核CPU中也支持编写多线程代码，CPU通过给每个线程分配CPU时间片来实现这个机制，并且也可以帮助我们实现更佳的吞吐量。如果一个程序是单线程的，这个处理器在等待一个I/O操作完成的时候，仍然是空闲的。在一个多线程程序中，当第一个线程等待I/O结束的同时，另外一个线程也可以运行，这样就使得应用程序在遇到I/O阻塞的时候仍然有进展。不过如果线程数非常多，CPU会在线程之间频繁地进行上下文切换，会影响多线程的执行速度，所以虽然支持但还是尽量用多核CPU。<br>&emsp;&emsp;总结一下，由于芯片技术的瓶颈导致了摩尔定律的失效，所以为了继续保持性能的高速发展，硬件工程师想到了将多个CPU内核塞进一个CPU。所以在多核CPU的工作模式下，使用多线程编程才能更好的利用CPU资源，提高系统的吞吐率。</p>
+<h2 id="二-并发编程带来的挑战"><a href="#二-并发编程带来的挑战" class="headerlink" title="二.并发编程带来的挑战"></a>二.并发编程带来的挑战</h2><p>&emsp;&emsp;根据著名计算机科学家唐纳德的观点，摩尔定律本应该由硬件开发人员维持。但是，硬件工程师似乎已经无计可施，他们采用了多核处理器的设计，简化的硬件设计方案必然带来软件设计的复杂性。换句话说，软件工程师正在为硬件工程师无法完成的工作负责，因此，也就有了唐纳德的“他们将摩尔定律失效的责任推给了软件开发者”的说法。<br>&emsp;&emsp;所以，如何让多核处理器有效并且正确地工作也就成了一门技术，甚至是很大的学问。比如，多线程间如何保证线程安全，如何正确理解线程间的无序性、可见性。对于并发编程的研究，逐渐被人们重视起来。<br>&emsp;&emsp;那么，并发编程给软件工程师带来了哪些挑战呢？这要从现代CPU的硬件设计讲起。<br>&emsp;&emsp;多核处理器是将多个CPU(称为“核”)集成到一个集成电路芯片上，如下图描述的是一个典型多核处理器的组织结构，其中微处理器芯片有4个CPU核，每个核都有自己的L1和L2高速缓存，其中的L1高速缓存分为两个部分：一个保存最近取到的指令，另一个存放数据。这些核共享更高层次的L3高速缓存，以及到主存的接口。<br><img src="https://res.insta360.com/static/assets/storage/20200914/4c6169e621d6ee38a51a5bc146c64c24/1.image" alt="alt"><br>&emsp;&emsp;从上图可以看出，计算机的存储设备与处理器的运算速度有着几个数量级的差距，所以现代计算机系统都不得不加入一层或多层读写速度尽可能接近处理器运算速度的高速缓存来作为内存与处理器之间的缓冲：将运算需要使用的数据复制到缓存中，让运算能快速进行，当运算结束后再从缓存同步回内存之中，这样处理器就无须等待缓慢的内存读写了。<br>基于高速缓存的存储交互很好地解决了处理器与内存速度之间的矛盾，但它引入了一个新的问题：缓存一致性。在多核处理器系统中，每个处理器都有自己的高速缓存，而它们又共享同一主内存，这种系统称为共享内存多核系统，如下图所示，当多个处理器的运算任务都涉及同一块主内存区域时，将可能导致各自的缓存数据不一致。为了解决一致性的问题，需要各个处理器访问缓存时都遵循一些协议，在读写时要根据协议来进行操作，这类协议又MSI、MESI、MOSI、Synapse等。<br><img src="https://res.insta360.com/static/assets/storage/20200914/c69a82d6f841e60e0a1bb7e30caed800/2.image" alt="alt"><br>&emsp;&emsp;由于主流程序语言(如C和C++等)直接使用物理硬件和操作系统的内存模型。因此，由于不同平台上内存模型的差异，有可能导致程序在一套平台上并发完全正常，而在另外一套平台上并发访问却经常出错，所以《Java虚拟机规范》定义了一种“Java内存模型”，即定义Java内存模型来屏蔽各种硬件和操作系统的内存访问差异，以实现让Java程序在各种平台下都能达到一致性的内存访问效果。</p>
+<h2 id="三-JMM是什么"><a href="#三-JMM是什么" class="headerlink" title="三.JMM是什么"></a>三.JMM是什么</h2><p>&emsp;&emsp;是一组规范，需要各个JVM的实现来遵守JMM规范，以便于开发者可以利用这些规范，更方便地开发多线程程序。<br>&emsp;&emsp;Java内存模型规定了所有的变量都存储在主内存中(类比操作系统的主内存)。每条线程还有自己的工作内存(类比前面讲的处理器高速缓存)，线程的工作内存中保存了主内存的变量副本，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存中的数据。不同线程之间也无法直接访问对方工作内存中的变量，线程间变量值的传递均需要通过主内存来完成，线程、主内存、工作内存三者的交互关系如下图所示：<br><img src="https://res.insta360.com/static/assets/storage/20200914/3475ce2d25cabe886dad2cbd46ef88d6/3.image" alt=""></p>
+<h2 id="四-JMM的内容"><a href="#四-JMM的内容" class="headerlink" title="四.JMM的内容"></a>四.JMM的内容</h2><p>&emsp;&emsp;关于主内存与工作内存之间具体的交互协议，即一个变量如何从主内存拷贝到工作内存、如何从工作内存同步回主内存这一类的实现细节，Java内存模型中定义了下图中的8种操作来完成。Java虚拟机实现时必须保证下面提及的每一种操作都是原子的、不可再分的。具体的每个操作就不做阐述了，感兴趣的同学可以去查一下。<br><img src="https://res.insta360.com/static/assets/storage/20200914/8ee45229370dfe6e545433f43ade2f2c/4.image" alt=""><br>&emsp;&emsp;JMM最重要的3点内容分别是重排序、内存可见性、原子性。因为这就是并发编程出现BUG的三大源头。接下来将会分三篇文章分别讲解这三部分内容。<br><br><br><br><br><br></p>
+<p><br><br>参考书籍如下:<br>《深入理解计算机系统》<br>《深入理解Java虚拟机第三版》<br>《实战Java高并发程序设计》<br>《Java并发编程实战》<br>《Java并发编程的艺术》</p>
+
       
     </div>
     
@@ -562,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -591,7 +621,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -695,6 +725,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-为什么需要并发编程"><span class="nav-number">1.</span> <span class="nav-text">一.为什么需要并发编程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-并发编程带来的挑战"><span class="nav-number">2.</span> <span class="nav-text">二.并发编程带来的挑战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-JMM是什么"><span class="nav-number">3.</span> <span class="nav-text">三.JMM是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-JMM的内容"><span class="nav-number">4.</span> <span class="nav-text">四.JMM的内容</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
