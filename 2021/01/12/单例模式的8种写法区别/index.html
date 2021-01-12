@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人) 1.饿汉式（静态常量）【可用】12345678910111213141516/** * 描述：     饿汉式（静态常">
+<meta name="description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单例模式的8种写法区别">
 <meta property="og:url" content="http://www.braydenwong.com/2021/01/12/单例模式的8种写法区别/index.html">
 <meta property="og:site_name" content="Brayden Wong">
-<meta property="og:description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人) 1.饿汉式（静态常量）【可用】12345678910111213141516/** * 描述：     饿汉式（静态常">
+<meta property="og:description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-01-12T11:18:03.546Z">
+<meta property="og:updated_time" content="2021-01-12T11:27:56.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式的8种写法区别">
-<meta name="twitter:description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人) 1.饿汉式（静态常量）【可用】12345678910111213141516/** * 描述：     饿汉式（静态常">
+<meta name="twitter:description" content="适用场景：无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人)">
 
 
 
@@ -383,7 +383,7 @@
       
 
       
-        <p>适用场景：<br>无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。<br>饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)<br>懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人)</p>
+        <p>适用场景：<br>无状态的工具类，很多工具类我们只需要一个实例，节省内存。但是大家的写法非常多，正确的写法却很少看见，希望看完这篇文章能够帮你梳理清楚。<br>饿汉式：不管你用的用不上，一开始就建立这个单例对象(就像一个饥饿的人)<br>懒汉式：是在你真正用到的时候才去建这个单例对象(就像一个懒惰的人)<a id="more"></a></p>
 <h1 id="1-饿汉式（静态常量）【可用】"><a href="#1-饿汉式（静态常量）【可用】" class="headerlink" title="1.饿汉式（静态常量）【可用】"></a>1.饿汉式（静态常量）【可用】</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 描述：     饿汉式（静态常量）（可用）</span><br><span class="line"> */</span><br><span class="line">public class Singleton1 &#123;</span><br><span class="line"></span><br><span class="line">    private final static Singleton1 INSTANCE = new Singleton1();</span><br><span class="line"></span><br><span class="line">    private Singleton1() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static Singleton1 getInstance() &#123;</span><br><span class="line">        return INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>优点：这种写法比较简单，就是在类装载的时候就完成实例化。避免了线程同步问题。<br>缺点：在类装载的时候就完成实例化，没有达到Lazy Loading的效果。如果从始至终从未使用过这个实例，则会造成内存的浪费。</p>
 <h1 id="2-饿汉式（静态代码块）【可用】"><a href="#2-饿汉式（静态代码块）【可用】" class="headerlink" title="2.饿汉式（静态代码块）【可用】"></a>2.饿汉式（静态代码块）【可用】</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 描述：     饿汉式（静态代码块）（可用）</span><br><span class="line"> */</span><br><span class="line">public class Singleton2 &#123;</span><br><span class="line"></span><br><span class="line">    private final static Singleton2 INSTANCE;</span><br><span class="line"></span><br><span class="line">    static &#123;</span><br><span class="line">        INSTANCE = new Singleton2();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private Singleton2() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static Singleton2 getInstance() &#123;</span><br><span class="line">        return INSTANCE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
