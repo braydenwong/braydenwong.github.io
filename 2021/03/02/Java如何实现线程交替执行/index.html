@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta name="description" content="这是个比较基础但是面试常考的一个问题，用两道经典面试题来close这个话题吧。在Java中实现线程协作一般就是用wait/notify模式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java如何实现线程交替执行?">
 <meta property="og:url" content="http://www.braydenwong.com/2021/03/02/Java如何实现线程交替执行/index.html">
 <meta property="og:site_name" content="Brayden Wong">
-<meta property="og:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta property="og:description" content="这是个比较基础但是面试常考的一个问题，用两道经典面试题来close这个话题吧。在Java中实现线程协作一般就是用wait/notify模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-03-02T12:19:21.781Z">
+<meta property="og:updated_time" content="2021-03-03T01:52:25.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java如何实现线程交替执行?">
-<meta name="twitter:description" content="三四月份做的事到七八月份也没结果，那就等明年的八九月份再看。">
+<meta name="twitter:description" content="这是个比较基础但是面试常考的一个问题，用两道经典面试题来close这个话题吧。在Java中实现线程协作一般就是用wait/notify模式。">
 
 
 
@@ -383,7 +383,12 @@
       
 
       
-        
+        <p>这是个比较基础但是面试常考的一个问题，用两道经典面试题来close这个话题吧。在Java中实现线程协作一般就是用wait/notify模式。<a id="more"></a></p>
+<h2 id="一-两个线程交替打印0-100的奇偶数"><a href="#一-两个线程交替打印0-100的奇偶数" class="headerlink" title="一.两个线程交替打印0~100的奇偶数"></a>一.两个线程交替打印0~100的奇偶数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 简单复习：</span><br><span class="line"> * 1.wait和notify都是Object类的方法。</span><br><span class="line"> * 2.wait和notify必须要在synchronized代码块中执行，否则会抛异常。</span><br><span class="line"> */</span><br><span class="line">public class WaitNotifyPrint &#123;</span><br><span class="line"></span><br><span class="line">    private static int count = 0;</span><br><span class="line">    //两个线程竞争该对象锁</span><br><span class="line">    private static final Object lock = new Object();</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws InterruptedException &#123;</span><br><span class="line">        new Thread(new TurningRunner(), &quot;偶数&quot;).start();</span><br><span class="line">        new Thread(new TurningRunner(), &quot;奇数&quot;).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //1. 拿到锁直接就打印。</span><br><span class="line">    //2. 打印完，唤醒其他线程，自己就休眠。</span><br><span class="line">    static class TurningRunner implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while (count &lt;= 100) &#123;</span><br><span class="line">                synchronized (lock) &#123;</span><br><span class="line">                    //拿到锁就打印</span><br><span class="line">                    System.out.println(Thread.currentThread().getName() + &quot;:&quot; + count++);</span><br><span class="line">                    //打印完，唤醒其他线程</span><br><span class="line">                    lock.notify();</span><br><span class="line">                    //如果任务还没结束，就调用wait()让出当前的锁</span><br><span class="line">                    if (count &lt;= 100) &#123;</span><br><span class="line">                        try &#123;</span><br><span class="line">                            //自己休眠</span><br><span class="line">                            lock.wait();</span><br><span class="line">                        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意交替打印奇偶数还可以用synchronized实现，感兴趣可以自行百度～</p>
+<h2 id="二-实现经典的生产者消费者模式"><a href="#二-实现经典的生产者消费者模式" class="headerlink" title="二.实现经典的生产者消费者模式"></a>二.实现经典的生产者消费者模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">/* </span><br><span class="line"> * 场景描述：用EventStorage模拟仓库，Producer代表生产者，Consumer代表消费者，</span><br><span class="line"> * 生产者和消费者共同对仓库进行协作。</span><br><span class="line"> * 下面会有大量注释进行说明，放心阅读～</span><br><span class="line"> */</span><br><span class="line">public class ProducerConsumerModel &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">    	//初始化仓库</span><br><span class="line">        EventStorage eventStorage = new EventStorage();</span><br><span class="line">        //用仓库初始化生产者</span><br><span class="line">        Producer producer = new Producer(eventStorage);</span><br><span class="line">        //用仓库初始化消费者</span><br><span class="line">        Consumer consumer = new Consumer(eventStorage);</span><br><span class="line">        //启动生产者和消费者</span><br><span class="line">        new Thread(producer).start();</span><br><span class="line">        new Thread(consumer).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Producer implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">    private EventStorage storage;</span><br><span class="line"></span><br><span class="line">    public Producer(</span><br><span class="line">            EventStorage storage) &#123;</span><br><span class="line">        this.storage = storage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">    	//生产者往仓库中生产100个对象（此时消费者也在消费）</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            storage.put();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Consumer implements Runnable &#123;</span><br><span class="line"></span><br><span class="line">    private EventStorage storage;</span><br><span class="line"></span><br><span class="line">    public Consumer(</span><br><span class="line">            EventStorage storage) &#123;</span><br><span class="line">        this.storage = storage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">		//消费者循环消费仓库中的对象（此时生产者也在生产）</span><br><span class="line">        for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">            storage.take();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class EventStorage &#123;</span><br><span class="line">    private int maxSize;</span><br><span class="line">    //用Date来模拟对象</span><br><span class="line">    private LinkedList&lt;Date&gt; storage;</span><br><span class="line">    //注意看构造方法定义仓库大小为10，并且用LinkedList来存储对象</span><br><span class="line">    public EventStorage() &#123;</span><br><span class="line">        maxSize = 10;</span><br><span class="line">        storage = new LinkedList&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    public synchronized void put() &#123;</span><br><span class="line">    	//仓库满了就休眠</span><br><span class="line">        while (storage.size() == maxSize) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                wait();</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //仓库没满就添加并通知消费者</span><br><span class="line">        storage.add(new Date());</span><br><span class="line">        System.out.println(&quot;仓库里有了&quot; + storage.size() + &quot;个产品。&quot;);</span><br><span class="line">        notify();</span><br><span class="line">    &#125;</span><br><span class="line">    public synchronized void take() &#123;</span><br><span class="line">    	//仓库空了就休眠</span><br><span class="line">        while (storage.size() == 0) &#123;</span><br><span class="line">            try &#123;</span><br><span class="line">                wait();</span><br><span class="line">            &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //没空就取数据，poll方法代表检索并删除并通知生产者</span><br><span class="line">        System.out.println(&quot;拿到了&quot; + storage.poll() + &quot;，现在仓库还剩下&quot; + storage.size());</span><br><span class="line">        notify();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h2><p>wait/notify是比较底层的实现，现在一般都是用JDK封装好的一些工具类或框架，比如阻塞队列，线程协作工具类。但是这些工具万变不离其宗，了解本质才是根本。</p>
+
       
     </div>
     
@@ -543,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -676,6 +690,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-两个线程交替打印0-100的奇偶数"><span class="nav-number">1.</span> <span class="nav-text">一.两个线程交替打印0~100的奇偶数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-实现经典的生产者消费者模式"><span class="nav-number">2.</span> <span class="nav-text">二.实现经典的生产者消费者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-总结"><span class="nav-number">3.</span> <span class="nav-text">三.总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
